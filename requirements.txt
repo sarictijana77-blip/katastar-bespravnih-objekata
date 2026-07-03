@@ -12,3 +12,4 @@ rasterio
 opencv-python
 ultralytics
 scikit-learn
+requests
