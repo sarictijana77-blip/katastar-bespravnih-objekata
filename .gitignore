@@ -1,0 +1,21 @@
+# Veliki generisani geo fajlovi
+data/processed/
+data/raw/
+
+# Veliki izlazni fajlovi ako se generisu ponovo
+*.shp
+*.shx
+*.dbf
+*.prj
+*.cpg
+*.gpkg
+*.tif
+*.tiff
+*.zip
+
+# Python
+__pycache__/
+*.pyc
+
+# Lokalna podesavanja
+.env

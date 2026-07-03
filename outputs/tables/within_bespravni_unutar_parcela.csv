@@ -1,0 +1,6 @@
+﻿bespravni_id,status_slucaja,procenjena_povrsina_m2,datum_detekcije,napomena,parcela_id_left,inspektor_id,povrsina_iz_geometrije_m2,index_right,parcela_id_right,broj_parcele,katastarska_opstina
+2,U proceduri,85.0,2024-02-20,Nadogradnja sprata,2,2,78533.01,1,2,1002,Novi Sad I
+3,Detektovano,210.0,2024-03-10,Nova kuća na poljoprivrednom zemljištu,3,3,78466.57,2,3,2045,Veternik
+4,Rusenje,45.0,2024-04-05,Pomoćni objekat na trotoaru,4,4,78490.47,3,4,501,Petrovaradin
+5,U proceduri,155.0,2024-05-12,Proširenje poslovnog prostora,5,5,78518.55,4,5,120,Sremska Kamenica
+1,U proceduri,120.5,2024-01-15,Dogradnja bez dozvole,1,1,78533.29,0,1,1001,Novi Sad I
