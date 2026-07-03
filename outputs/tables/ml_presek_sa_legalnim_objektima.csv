@@ -1,0 +1,6 @@
+﻿procenjena_povrsina_m2,confidence,status_slucaja,izvor_snimka,model,napomena,parcela_id,broj_parcele,katastarska_opstina,inspektor_id,index_right,objekat_id,broj_dozvole,namjena_objekta
+142067.19,0.85,Detektovano ML,simulirani_raster_na_osnovu_PostGIS_podataka,KMeans segmentacija piksela,Automatski detektovan building footprint na raster snimku,2,1002,Novi Sad I,1,1,2,ROP-NS-12-2023,poslovni
+141940.57,0.85,Detektovano ML,simulirani_raster_na_osnovu_PostGIS_podataka,KMeans segmentacija piksela,Automatski detektovan building footprint na raster snimku,1,1001,Novi Sad I,1,0,1,ROP-NS-11-2023,stambeni
+141180.85,0.85,Detektovano ML,simulirani_raster_na_osnovu_PostGIS_podataka,KMeans segmentacija piksela,Automatski detektovan building footprint na raster snimku,5,120,Sremska Kamenica,1,4,5,ROP-SK-44-2024,poslovni
+139028.32,0.85,Detektovano ML,simulirani_raster_na_osnovu_PostGIS_podataka,KMeans segmentacija piksela,Automatski detektovan building footprint na raster snimku,4,501,Petrovaradin,1,3,4,ROP-PR-99-2022,stambeni
+137508.89,0.85,Detektovano ML,simulirani_raster_na_osnovu_PostGIS_podataka,KMeans segmentacija piksela,Automatski detektovan building footprint na raster snimku,3,2045,Veternik,1,2,3,ROP-VT-05-2024,stambeni

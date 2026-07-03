@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_f9b7132cc609128e8e686d292476f277 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    
+                    <style>
+                        .foliumtooltip {
+                            
+                        }
+                       .foliumtooltip table{
+                            margin: auto;
+                        }
+                        .foliumtooltip tr{
+                            text-align: left;
+                        }
+                        .foliumtooltip th{
+                            padding: 2px; padding-right: 8px;
+                        }
+                    </style>
+            
+    
+                    <style>
+                        .foliumtooltip {
+                            
+                        }
+                       .foliumtooltip table{
+                            margin: auto;
+                        }
+                        .foliumtooltip tr{
+                            text-align: left;
+                        }
+                        .foliumtooltip th{
+                            padding: 2px; padding-right: 8px;
+                        }
+                    </style>
+            
+    
+                    <style>
+                        .foliumtooltip {
+                            
+                        }
+                       .foliumtooltip table{
+                            margin: auto;
+                        }
+                        .foliumtooltip tr{
+                            text-align: left;
+                        }
+                        .foliumtooltip th{
+                            padding: 2px; padding-right: 8px;
+                        }
+                    </style>
+            
+    
+                    <style>
+                        .foliumtooltip {
+                            
+                        }
+                       .foliumtooltip table{
+                            margin: auto;
+                        }
+                        .foliumtooltip tr{
+                            text-align: left;
+                        }
+                        .foliumtooltip th{
+                            padding: 2px; padding-right: 8px;
+                        }
+                    </style>
+            
+    
+                    <style>
+                        .foliumtooltip {
+                            
+                        }
+                       .foliumtooltip table{
+                            margin: auto;
+                        }
+                        .foliumtooltip tr{
+                            text-align: left;
+                        }
+                        .foliumtooltip th{
+                            padding: 2px; padding-right: 8px;
+                        }
+                    </style>
+            
+    
+                    <style>
+                        .foliumtooltip {
+                            
+                        }
+                       .foliumtooltip table{
+                            margin: auto;
+                        }
+                        .foliumtooltip tr{
+                            text-align: left;
+                        }
+                        .foliumtooltip th{
+                            padding: 2px; padding-right: 8px;
+                        }
+                    </style>
+            
+    
+                    <style>
+                        .foliumtooltip {
+                            
+                        }
+                       .foliumtooltip table{
+                            margin: auto;
+                        }
+                        .foliumtooltip tr{
+                            text-align: left;
+                        }
+                        .foliumtooltip th{
+                            padding: 2px; padding-right: 8px;
+                        }
+                    </style>
+            
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_f9b7132cc609128e8e686d292476f277" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_f9b7132cc609128e8e686d292476f277 = L.map(
+                "map_f9b7132cc609128e8e686d292476f277",
+                {
+                    center: [45.22259685461079, 19.818345460505423],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 12,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_a6b1b86f89a011e96980c5d3e64a1a30 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_a6b1b86f89a011e96980c5d3e64a1a30.addTo(map_f9b7132cc609128e8e686d292476f277);
+        
+    
+            var tile_layer_e5f5eb86d7aad96af28e2df162ab5d16 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_e5f5eb86d7aad96af28e2df162ab5d16.addTo(map_f9b7132cc609128e8e686d292476f277);
+        
+    
+            var tile_layer_d77f88e28a665a8fdaedb11df0d0ae03 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_d77f88e28a665a8fdaedb11df0d0ae03.addTo(map_f9b7132cc609128e8e686d292476f277);
+        
+    
+        function geo_json_a6df746382e0b7891e69174c7ad6bc92_styler(feature) {
+            switch(feature.id) {
+                default:
+                    return {"color": "blue", "fillColor": "blue", "fillOpacity": 0.35, "weight": 2};
+            }
+        }
+
+        function geo_json_a6df746382e0b7891e69174c7ad6bc92_onEachFeature(feature, layer) {
+
+            layer.on({
+            });
+        };
+        var geo_json_a6df746382e0b7891e69174c7ad6bc92 = L.geoJson(null, {
+                onEachFeature: geo_json_a6df746382e0b7891e69174c7ad6bc92_onEachFeature,
+            
+                style: geo_json_a6df746382e0b7891e69174c7ad6bc92_styler,
+            ...{
+}
+        });
+
+        function geo_json_a6df746382e0b7891e69174c7ad6bc92_add (data) {
+            geo_json_a6df746382e0b7891e69174c7ad6bc92
+                .addData(data);
+        }
+            geo_json_a6df746382e0b7891e69174c7ad6bc92_add({"bbox": [19.75, 45.2, 19.88, 45.26], "features": [{"bbox": [19.8, 45.2, 19.81, 45.21], "geometry": {"coordinates": [[[19.8, 45.2], [19.81, 45.2], [19.81, 45.21], [19.8, 45.21], [19.8, 45.2]]], "type": "Polygon"}, "id": "0", "properties": {"broj_parcele": "1001", "katastarska_opstina": "Novi Sad I", "namjena": "gra\u0111evinsko", "parcela_id": "1", "povrsina_m2": "500.0", "vlasnik_id": "1"}, "type": "Feature"}, {"bbox": [19.81, 45.2, 19.82, 45.21], "geometry": {"coordinates": [[[19.81, 45.2], [19.82, 45.2], [19.82, 45.21], [19.81, 45.21], [19.81, 45.2]]], "type": "Polygon"}, "id": "1", "properties": {"broj_parcele": "1002", "katastarska_opstina": "Novi Sad I", "namjena": "gra\u0111evinsko", "parcela_id": "2", "povrsina_m2": "620.5", "vlasnik_id": "2"}, "type": "Feature"}, {"bbox": [19.75, 45.25, 19.76, 45.26], "geometry": {"coordinates": [[[19.75, 45.25], [19.76, 45.25], [19.76, 45.26], [19.75, 45.26], [19.75, 45.25]]], "type": "Polygon"}, "id": "2", "properties": {"broj_parcele": "2045", "katastarska_opstina": "Veternik", "namjena": "poljoprivredno", "parcela_id": "3", "povrsina_m2": "800.0", "vlasnik_id": "3"}, "type": "Feature"}, {"bbox": [19.87, 45.23, 19.88, 45.24], "geometry": {"coordinates": [[[19.87, 45.23], [19.88, 45.23], [19.88, 45.24], [19.87, 45.24], [19.87, 45.23]]], "type": "Polygon"}, "id": "3", "properties": {"broj_parcele": "501", "katastarska_opstina": "Petrovaradin", "namjena": "gra\u0111evinsko", "parcela_id": "4", "povrsina_m2": "1200.0", "vlasnik_id": "4"}, "type": "Feature"}, {"bbox": [19.84, 45.21, 19.85, 45.22], "geometry": {"coordinates": [[[19.84, 45.21], [19.85, 45.21], [19.85, 45.22], [19.84, 45.22], [19.84, 45.21]]], "type": "Polygon"}, "id": "4", "properties": {"broj_parcele": "120", "katastarska_opstina": "Sremska Kamenica", "namjena": "gra\u0111evinsko", "parcela_id": "5", "povrsina_m2": "950.0", "vlasnik_id": "5"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+    geo_json_a6df746382e0b7891e69174c7ad6bc92.bindTooltip(
+    function(layer){
+    let div = L.DomUtil.create('div');
+    
+    let handleObject = feature => {
+        if (feature === null) {
+            return '';
+        } else if (typeof(feature)=='object') {
+            return JSON.stringify(feature);
+        } else {
+            return feature;
+        }
+    }
+    let fields = ["parcela_id", "broj_parcele", "katastarska_opstina", "povrsina_m2", "namjena", "vlasnik_id"];
+    let aliases = ["parcela_id", "broj_parcele", "katastarska_opstina", "povrsina_m2", "namjena", "vlasnik_id"];
+    let table = '<table>' +
+        String(
+        fields.map(
+        (v,i)=>
+        `<tr>
+            <th>${aliases[i]}</th>
+            
+            <td>${handleObject(layer.feature.properties[v])}</td>
+        </tr>`).join(''))
+    +'</table>';
+    div.innerHTML=table;
+    
+    return div
+    }
+    ,{
+  "sticky": true,
+  "className": "foliumtooltip",
+});
+                     
+    
+            geo_json_a6df746382e0b7891e69174c7ad6bc92.addTo(map_f9b7132cc609128e8e686d292476f277);
+        
+    
+        function geo_json_f73fba1d9f8ab8fd5f02b71deb7b2768_styler(feature) {
+            switch(feature.id) {
+                default:
+                    return {"color": "green", "fillColor": "green", "fillOpacity": 0.35, "weight": 2};
+            }
+        }
+
+        function geo_json_f73fba1d9f8ab8fd5f02b71deb7b2768_onEachFeature(feature, layer) {
+
+            layer.on({
+            });
+        };
+        var geo_json_f73fba1d9f8ab8fd5f02b71deb7b2768 = L.geoJson(null, {
+                onEachFeature: geo_json_f73fba1d9f8ab8fd5f02b71deb7b2768_onEachFeature,
+            
+                style: geo_json_f73fba1d9f8ab8fd5f02b71deb7b2768_styler,
+            ...{
+}
+        });
+
+        function geo_json_f73fba1d9f8ab8fd5f02b71deb7b2768_add (data) {
+            geo_json_f73fba1d9f8ab8fd5f02b71deb7b2768
+                .addData(data);
+        }
+            geo_json_f73fba1d9f8ab8fd5f02b71deb7b2768_add({"bbox": [19.751, 45.201, 19.875, 45.255], "features": [{"bbox": [19.801, 45.201, 19.805, 45.205], "geometry": {"coordinates": [[[19.801, 45.201], [19.805, 45.201], [19.805, 45.205], [19.801, 45.205], [19.801, 45.201]]], "type": "Polygon"}, "id": "0", "properties": {"broj_dozvole": "ROP-NS-11-2023", "godina_izgradnje": "2023", "namjena_objekta": "stambeni", "objekat_id": "1", "parcela_id": "1", "spratnost": "P+1+Pk"}, "type": "Feature"}, {"bbox": [19.811, 45.201, 19.815, 45.205], "geometry": {"coordinates": [[[19.811, 45.201], [19.815, 45.201], [19.815, 45.205], [19.811, 45.205], [19.811, 45.201]]], "type": "Polygon"}, "id": "1", "properties": {"broj_dozvole": "ROP-NS-12-2023", "godina_izgradnje": "2018", "namjena_objekta": "poslovni", "objekat_id": "2", "parcela_id": "2", "spratnost": "P+0"}, "type": "Feature"}, {"bbox": [19.751, 45.251, 19.755, 45.255], "geometry": {"coordinates": [[[19.751, 45.251], [19.755, 45.251], [19.755, 45.255], [19.751, 45.255], [19.751, 45.251]]], "type": "Polygon"}, "id": "2", "properties": {"broj_dozvole": "ROP-VT-05-2024", "godina_izgradnje": "2024", "namjena_objekta": "stambeni", "objekat_id": "3", "parcela_id": "3", "spratnost": "P+2"}, "type": "Feature"}, {"bbox": [19.871, 45.231, 19.875, 45.235], "geometry": {"coordinates": [[[19.871, 45.231], [19.875, 45.231], [19.875, 45.235], [19.871, 45.235], [19.871, 45.231]]], "type": "Polygon"}, "id": "3", "properties": {"broj_dozvole": "ROP-PR-99-2022", "godina_izgradnje": "2022", "namjena_objekta": "stambeni", "objekat_id": "4", "parcela_id": "4", "spratnost": "P+1"}, "type": "Feature"}, {"bbox": [19.841, 45.211, 19.845, 45.215], "geometry": {"coordinates": [[[19.841, 45.211], [19.845, 45.211], [19.845, 45.215], [19.841, 45.215], [19.841, 45.211]]], "type": "Polygon"}, "id": "4", "properties": {"broj_dozvole": "ROP-SK-44-2024", "godina_izgradnje": "2020", "namjena_objekta": "poslovni", "objekat_id": "5", "parcela_id": "5", "spratnost": "P+1"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+    geo_json_f73fba1d9f8ab8fd5f02b71deb7b2768.bindTooltip(
+    function(layer){
+    let div = L.DomUtil.create('div');
+    
+    let handleObject = feature => {
+        if (feature === null) {
+            return '';
+        } else if (typeof(feature)=='object') {
+            return JSON.stringify(feature);
+        } else {
+            return feature;
+        }
+    }
+    let fields = ["objekat_id", "broj_dozvole", "spratnost", "godina_izgradnje", "namjena_objekta", "parcela_id"];
+    let aliases = ["objekat_id", "broj_dozvole", "spratnost", "godina_izgradnje", "namjena_objekta", "parcela_id"];
+    let table = '<table>' +
+        String(
+        fields.map(
+        (v,i)=>
+        `<tr>
+            <th>${aliases[i]}</th>
+            
+            <td>${handleObject(layer.feature.properties[v])}</td>
+        </tr>`).join(''))
+    +'</table>';
+    div.innerHTML=table;
+    
+    return div
+    }
+    ,{
+  "sticky": true,
+  "className": "foliumtooltip",
+});
+                     
+    
+            geo_json_f73fba1d9f8ab8fd5f02b71deb7b2768.addTo(map_f9b7132cc609128e8e686d292476f277);
+        
+    
+        function geo_json_cefb1544db381e4995b7b633ae7726d2_styler(feature) {
+            switch(feature.id) {
+                default:
+                    return {"color": "red", "fillColor": "red", "fillOpacity": 0.35, "weight": 2};
+            }
+        }
+
+        function geo_json_cefb1544db381e4995b7b633ae7726d2_onEachFeature(feature, layer) {
+
+            layer.on({
+            });
+        };
+        var geo_json_cefb1544db381e4995b7b633ae7726d2 = L.geoJson(null, {
+                onEachFeature: geo_json_cefb1544db381e4995b7b633ae7726d2_onEachFeature,
+            
+                style: geo_json_cefb1544db381e4995b7b633ae7726d2_styler,
+            ...{
+}
+        });
+
+        function geo_json_cefb1544db381e4995b7b633ae7726d2_add (data) {
+            geo_json_cefb1544db381e4995b7b633ae7726d2
+                .addData(data);
+        }
+            geo_json_cefb1544db381e4995b7b633ae7726d2_add({"bbox": [19.756, 45.206, 19.879, 45.259], "features": [{"bbox": [19.816, 45.206, 19.819, 45.209], "geometry": {"coordinates": [[[19.816, 45.206], [19.819, 45.206], [19.819, 45.209], [19.816, 45.209], [19.816, 45.206]]], "type": "Polygon"}, "id": "0", "properties": {"bespravni_id": "2", "datum_detekcije": "2024-02-20", "inspektor_id": "2", "napomena": "Nadogradnja sprata", "parcela_id": "2", "procenjena_povrsina_m2": "85.0", "status_slucaja": "U proceduri"}, "type": "Feature"}, {"bbox": [19.756, 45.256, 19.759, 45.259], "geometry": {"coordinates": [[[19.756, 45.256], [19.759, 45.256], [19.759, 45.259], [19.756, 45.259], [19.756, 45.256]]], "type": "Polygon"}, "id": "1", "properties": {"bespravni_id": "3", "datum_detekcije": "2024-03-10", "inspektor_id": "3", "napomena": "Nova ku\u0107a na poljoprivrednom zemlji\u0161tu", "parcela_id": "3", "procenjena_povrsina_m2": "210.0", "status_slucaja": "Detektovano"}, "type": "Feature"}, {"bbox": [19.876, 45.236, 19.879, 45.239], "geometry": {"coordinates": [[[19.876, 45.236], [19.879, 45.236], [19.879, 45.239], [19.876, 45.239], [19.876, 45.236]]], "type": "Polygon"}, "id": "2", "properties": {"bespravni_id": "4", "datum_detekcije": "2024-04-05", "inspektor_id": "4", "napomena": "Pomo\u0107ni objekat na trotoaru", "parcela_id": "4", "procenjena_povrsina_m2": "45.0", "status_slucaja": "Rusenje"}, "type": "Feature"}, {"bbox": [19.846, 45.216, 19.849, 45.219], "geometry": {"coordinates": [[[19.846, 45.216], [19.849, 45.216], [19.849, 45.219], [19.846, 45.219], [19.846, 45.216]]], "type": "Polygon"}, "id": "3", "properties": {"bespravni_id": "5", "datum_detekcije": "2024-05-12", "inspektor_id": "5", "napomena": "Pro\u0161irenje poslovnog prostora", "parcela_id": "5", "procenjena_povrsina_m2": "155.0", "status_slucaja": "U proceduri"}, "type": "Feature"}, {"bbox": [19.806, 45.206, 19.809, 45.209], "geometry": {"coordinates": [[[19.806, 45.206], [19.809, 45.206], [19.809, 45.209], [19.806, 45.209], [19.806, 45.206]]], "type": "Polygon"}, "id": "4", "properties": {"bespravni_id": "1", "datum_detekcije": "2024-01-15", "inspektor_id": "1", "napomena": "Dogradnja bez dozvole", "parcela_id": "1", "procenjena_povrsina_m2": "120.5", "status_slucaja": "U proceduri"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+    geo_json_cefb1544db381e4995b7b633ae7726d2.bindTooltip(
+    function(layer){
+    let div = L.DomUtil.create('div');
+    
+    let handleObject = feature => {
+        if (feature === null) {
+            return '';
+        } else if (typeof(feature)=='object') {
+            return JSON.stringify(feature);
+        } else {
+            return feature;
+        }
+    }
+    let fields = ["bespravni_id", "status_slucaja", "procenjena_povrsina_m2", "datum_detekcije", "napomena", "parcela_id"];
+    let aliases = ["bespravni_id", "status_slucaja", "procenjena_povrsina_m2", "datum_detekcije", "napomena", "parcela_id"];
+    let table = '<table>' +
+        String(
+        fields.map(
+        (v,i)=>
+        `<tr>
+            <th>${aliases[i]}</th>
+            
+            <td>${handleObject(layer.feature.properties[v])}</td>
+        </tr>`).join(''))
+    +'</table>';
+    div.innerHTML=table;
+    
+    return div
+    }
+    ,{
+  "sticky": true,
+  "className": "foliumtooltip",
+});
+                     
+    
+            geo_json_cefb1544db381e4995b7b633ae7726d2.addTo(map_f9b7132cc609128e8e686d292476f277);
+        
+    
+        function geo_json_aa6e9bdb9a9f24010c9a580bdd614bf3_styler(feature) {
+            switch(feature.id) {
+                default:
+                    return {"color": "purple", "fillColor": "purple", "fillOpacity": 0.35, "weight": 2};
+            }
+        }
+
+        function geo_json_aa6e9bdb9a9f24010c9a580bdd614bf3_onEachFeature(feature, layer) {
+
+            layer.on({
+            });
+        };
+        var geo_json_aa6e9bdb9a9f24010c9a580bdd614bf3 = L.geoJson(null, {
+                onEachFeature: geo_json_aa6e9bdb9a9f24010c9a580bdd614bf3_onEachFeature,
+            
+                style: geo_json_aa6e9bdb9a9f24010c9a580bdd614bf3_styler,
+            ...{
+}
+        });
+
+        function geo_json_aa6e9bdb9a9f24010c9a580bdd614bf3_add (data) {
+            geo_json_aa6e9bdb9a9f24010c9a580bdd614bf3
+                .addData(data);
+        }
+            geo_json_aa6e9bdb9a9f24010c9a580bdd614bf3_add({"bbox": [19.750759913084764, 45.2010106024507, 19.879002243860093, 45.25910169649848], "features": [{"bbox": [19.810857790162917, 45.2010106024507, 19.814971233712217, 45.20509184910919], "geometry": {"coordinates": [[[19.810857790162917, 45.20504995959534], [19.810941948658595, 45.2010106024507], [19.814971233712217, 45.20105248609805], [19.814887360236085, 45.20509184910919], [19.810857790162917, 45.20504995959534]]], "type": "Polygon"}, "id": "0", "properties": {"broj_parcele": "1002", "confidence": "0.85", "inspektor_id": "1", "izvor_snimka": "simulirani_raster_na_osnovu_PostGIS_podataka", "katastarska_opstina": "Novi Sad I", "model": "KMeans segmentacija piksela", "napomena": "Automatski detektovan building footprint na raster snimku", "parcela_id": "2", "procenjena_povrsina_m2": "142067.19", "status_slucaja": "Detektovano ML"}, "type": "Feature"}, {"bbox": [19.800899847895888, 45.20102892027985, 19.805220251583965, 45.20511050361201], "geometry": {"coordinates": [[[19.800899847895888, 45.20506826275476], [19.80098471109164, 45.20102892027985], [19.80477696662339, 45.201068674747155], [19.804764150357578, 45.20168069737035], [19.804998606335875, 45.20180558242417], [19.80498579211727, 45.202417605017544], [19.805220251583965, 45.2025424896368], [19.805210001879836, 45.20303210769312], [19.804970414512812, 45.203152032038886], [19.804929404676045, 45.20511050361201], [19.800899847895888, 45.20506826275476]]], "type": "Polygon"}, "id": "1", "properties": {"broj_parcele": "1001", "confidence": "0.85", "inspektor_id": "1", "izvor_snimka": "simulirani_raster_na_osnovu_PostGIS_podataka", "katastarska_opstina": "Novi Sad I", "model": "KMeans segmentacija piksela", "napomena": "Automatski detektovan building footprint na raster snimku", "parcela_id": "1", "procenjena_povrsina_m2": "141940.57", "status_slucaja": "Detektovano ML"}, "type": "Feature"}, {"bbox": [19.815756752267976, 45.206080924209814, 19.81889667260329, 45.20905055736862], "geometry": {"coordinates": [[[19.815991262090385, 45.209021099388124], [19.815756752267976, 45.20889623650943], [19.8158151762786, 45.206080924209814], [19.81889667260329, 45.20611283696858], [19.818835866774922, 45.20905055736862], [19.815991262090385, 45.209021099388124]]], "type": "Polygon"}, "id": "2", "properties": {"broj_parcele": "1002", "confidence": "0.85", "inspektor_id": "1", "izvor_snimka": "simulirani_raster_na_osnovu_PostGIS_podataka", "katastarska_opstina": "Novi Sad I", "model": "KMeans segmentacija piksela", "napomena": "Automatski detektovan building footprint na raster snimku", "parcela_id": "2", "procenjena_povrsina_m2": "78884.01", "status_slucaja": "Detektovano ML"}, "type": "Feature"}, {"bbox": [19.805795569728698, 45.20599706708522, 19.808941087694905, 45.20906954908453], "geometry": {"coordinates": [[[19.805795569728698, 45.2090373643629], [19.805857046741586, 45.20609965784001], [19.807516307908173, 45.20611699663832], [19.807755902612545, 45.20599706708522], [19.808941087694905, 45.2060094346741], [19.808877214500686, 45.20906954908453], [19.805795569728698, 45.2090373643629]]], "type": "Polygon"}, "id": "3", "properties": {"broj_parcele": "1001", "confidence": "0.85", "inspektor_id": "1", "izvor_snimka": "simulirani_raster_na_osnovu_PostGIS_podataka", "katastarska_opstina": "Novi Sad I", "model": "KMeans segmentacija piksela", "napomena": "Automatski detektovan building footprint na raster snimku", "parcela_id": "1", "procenjena_povrsina_m2": "80403.45", "status_slucaja": "Detektovano ML"}, "type": "Feature"}, {"bbox": [19.84076481752552, 45.21099975908174, 19.84487692095387, 45.215070372577074], "geometry": {"coordinates": [[[19.84076481752552, 45.21502953125567], [19.8408444015185, 45.21111254381698], [19.841555584657783, 45.21111976046112], [19.841795130467492, 45.21099975908174], [19.84487692095387, 45.2110309735159], [19.844795135404897, 45.215070372577074], [19.84076481752552, 45.21502953125567]]], "type": "Polygon"}, "id": "4", "properties": {"broj_parcele": "120", "confidence": "0.85", "inspektor_id": "1", "izvor_snimka": "simulirani_raster_na_osnovu_PostGIS_podataka", "katastarska_opstina": "Sremska Kamenica", "model": "KMeans segmentacija piksela", "napomena": "Automatski detektovan building footprint na raster snimku", "parcela_id": "5", "procenjena_povrsina_m2": "141180.85", "status_slucaja": "Detektovano ML"}, "type": "Feature"}, {"bbox": [19.845901282282952, 45.21606160588412, 19.84899832885106, 45.219030457374124], "geometry": {"coordinates": [[[19.845901282282952, 45.21899934947536], [19.84596071558657, 45.21606160588412], [19.848805701629143, 45.216090320895034], [19.848763707708695, 45.21817122484049], [19.84899832885106, 45.21829602083218], [19.848983509330523, 45.219030457374124], [19.845901282282952, 45.21899934947536]]], "type": "Polygon"}, "id": "5", "properties": {"broj_parcele": "120", "confidence": "0.85", "inspektor_id": "1", "izvor_snimka": "simulirani_raster_na_osnovu_PostGIS_podataka", "katastarska_opstina": "Sremska Kamenica", "model": "KMeans segmentacija piksela", "napomena": "Automatski detektovan building footprint na raster snimku", "parcela_id": "5", "procenjena_povrsina_m2": "74578.94", "status_slucaja": "Detektovano ML"}, "type": "Feature"}, {"bbox": [19.87076199582117, 45.231001633933985, 19.874999378132728, 45.235083189789435], "geometry": {"coordinates": [[[19.870957941462667, 45.235043400302196], [19.87099672621162, 45.23308489318], [19.87076199582117, 45.23296014164136], [19.87080078448426, 45.231001633933985], [19.87483227321618, 45.23104142621787], [19.87476463267551, 45.234468818975124], [19.874999378132728, 45.23459356239906], [19.87498971618071, 45.235083189789435], [19.870957941462667, 45.235043400302196]]], "type": "Polygon"}, "id": "6", "properties": {"broj_parcele": "501", "confidence": "0.85", "inspektor_id": "1", "izvor_snimka": "simulirani_raster_na_osnovu_PostGIS_podataka", "katastarska_opstina": "Petrovaradin", "model": "KMeans segmentacija piksela", "napomena": "Automatski detektovan building footprint na raster snimku", "parcela_id": "4", "procenjena_povrsina_m2": "139028.32", "status_slucaja": "Detektovano ML"}, "type": "Feature"}, {"bbox": [19.875861130889785, 45.23607178630864, 19.879002243860093, 45.23903985991264], "geometry": {"coordinates": [[[19.875861130889785, 45.23900955015791], [19.875919061915248, 45.23607178630864], [19.879002243860093, 45.236102092976104], [19.878944471649344, 45.23903985991264], [19.875861130889785, 45.23900955015791]]], "type": "Polygon"}, "id": "7", "properties": {"broj_parcele": "501", "confidence": "0.85", "inspektor_id": "1", "izvor_snimka": "simulirani_raster_na_osnovu_PostGIS_podataka", "katastarska_opstina": "Petrovaradin", "model": "KMeans segmentacija piksela", "napomena": "Automatski detektovan building footprint na raster snimku", "parcela_id": "4", "procenjena_povrsina_m2": "79010.63", "status_slucaja": "Detektovano ML"}, "type": "Feature"}, {"bbox": [19.750759913084764, 45.25105509228621, 19.754849004223676, 45.25512025175234], "geometry": {"coordinates": [[[19.750964940555694, 45.255096918567745], [19.75099445960734, 45.25375050836641], [19.750759913084764, 45.25362551251529], [19.750816272189567, 45.25105509228621], [19.754849004223676, 45.25109913478531], [19.754763397735903, 45.25501597110677], [19.75333998169081, 45.25500044084154], [19.753100066744295, 45.25512025175234], [19.750964940555694, 45.255096918567745]]], "type": "Polygon"}, "id": "8", "properties": {"broj_parcele": "2045", "confidence": "0.85", "inspektor_id": "1", "izvor_snimka": "simulirani_raster_na_osnovu_PostGIS_podataka", "katastarska_opstina": "Veternik", "model": "KMeans segmentacija piksela", "napomena": "Automatski detektovan building footprint na raster snimku", "parcela_id": "3", "procenjena_povrsina_m2": "137508.89", "status_slucaja": "Detektovano ML"}, "type": "Feature"}, {"bbox": [19.755861362622706, 45.25600810852453, 19.758998989361807, 45.25910169649848], "geometry": {"coordinates": [[[19.755861362622706, 45.25906813575532], [19.75592819466695, 45.25600810852453], [19.758775081058936, 45.25603908734131], [19.758764413104757, 45.25652869233999], [19.758998989361807, 45.25665367200319], [19.75894565533265, 45.25910169649848], [19.755861362622706, 45.25906813575532]]], "type": "Polygon"}, "id": "9", "properties": {"broj_parcele": "2045", "confidence": "0.85", "inspektor_id": "1", "izvor_snimka": "simulirani_raster_na_osnovu_PostGIS_podataka", "katastarska_opstina": "Veternik", "model": "KMeans segmentacija piksela", "napomena": "Automatski detektovan building footprint na raster snimku", "parcela_id": "3", "procenjena_povrsina_m2": "81163.16", "status_slucaja": "Detektovano ML"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+    geo_json_aa6e9bdb9a9f24010c9a580bdd614bf3.bindTooltip(
+    function(layer){
+    let div = L.DomUtil.create('div');
+    
+    let handleObject = feature => {
+        if (feature === null) {
+            return '';
+        } else if (typeof(feature)=='object') {
+            return JSON.stringify(feature);
+        } else {
+            return feature;
+        }
+    }
+    let fields = ["procenjena_povrsina_m2", "confidence", "status_slucaja", "izvor_snimka", "model", "napomena"];
+    let aliases = ["procenjena_povrsina_m2", "confidence", "status_slucaja", "izvor_snimka", "model", "napomena"];
+    let table = '<table>' +
+        String(
+        fields.map(
+        (v,i)=>
+        `<tr>
+            <th>${aliases[i]}</th>
+            
+            <td>${handleObject(layer.feature.properties[v])}</td>
+        </tr>`).join(''))
+    +'</table>';
+    div.innerHTML=table;
+    
+    return div
+    }
+    ,{
+  "sticky": true,
+  "className": "foliumtooltip",
+});
+                     
+    
+            geo_json_aa6e9bdb9a9f24010c9a580bdd614bf3.addTo(map_f9b7132cc609128e8e686d292476f277);
+        
+    
+        function geo_json_66b692c581d5f1119573329960517d5f_styler(feature) {
+            switch(feature.id) {
+                default:
+                    return {"color": "orange", "fillColor": "orange", "fillOpacity": 0.35, "weight": 2};
+            }
+        }
+
+        function geo_json_66b692c581d5f1119573329960517d5f_onEachFeature(feature, layer) {
+
+            layer.on({
+            });
+        };
+        var geo_json_66b692c581d5f1119573329960517d5f = L.geoJson(null, {
+                onEachFeature: geo_json_66b692c581d5f1119573329960517d5f_onEachFeature,
+            
+                style: geo_json_66b692c581d5f1119573329960517d5f_styler,
+            ...{
+}
+        });
+
+        function geo_json_66b692c581d5f1119573329960517d5f_add (data) {
+            geo_json_66b692c581d5f1119573329960517d5f
+                .addData(data);
+        }
+            geo_json_66b692c581d5f1119573329960517d5f_add({"bbox": [19.75044138291356, 45.200785610762566, 19.879320690941732, 45.259326681541594], "features": [{"bbox": [19.810539524073437, 45.200785610762566, 19.815289478043304, 45.20531684094816], "geometry": {"coordinates": [[[19.81085310202363, 45.205274951107526], [19.814882687974116, 45.20531684094816], [19.81491390619815, 45.205316081293496], [19.814944868767316, 45.20531316215189], [19.814975277491712, 45.205308111636555], [19.815004839515503, 45.20530097838726], [19.8150332701374, 45.205291831101796], [19.815060295552613, 45.20528075787446], [19.81508565548981, 45.20526786534751], [19.81510910571776, 45.20525327768422], [19.81513042039745, 45.20523713537299], [19.815149394257045, 45.205219593874325], [19.81516584456879, 45.205200822123636], [19.81517961290872, 45.20518100090431], [19.81519056668233, 45.205160321106504], [19.815198600401416, 45.20513898188882], [19.815203636699927, 45.20511718876025], [19.815205627078896, 45.20509515160096], [19.815289478043304, 45.20105578812731], [19.815288403349367, 45.201033719153266], [19.815284274141185, 45.20101183091927], [19.815277130188726, 45.20099033422069], [19.81526704029535, 45.20096943608197], [19.815254101635073, 45.20094933776285], [19.815238438816646, 45.200930232820276], [19.815220202683367, 45.20091230524419], [19.815199568860347, 45.20089572768579], [19.81517673606308, 45.20088065979482], [19.815151924183702, 45.20086724668204], [19.815125372173288, 45.20085561752188], [19.815097335740685, 45.20084588430835], [19.81506808488994, 45.20083814077666], [19.815037901320096, 45.200832461500376], [19.815007075712387, 45.2008289011734], [19.814975904930918, 45.20082749408318], [19.810946635751076, 45.200785610762566], [19.81091541997599, 45.20078636935817], [19.81088445968388, 45.20078928743261], [19.81085405303585, 45.200794336883526], [19.81082449286135, 45.200801469082464], [19.810796063838175, 45.20081061534317], [19.81076903975101, 45.20082168758308], [19.810743680854763, 45.2008345791715], [19.810720231368304, 45.20084916595658], [19.8106989171225, 45.200865307460816], [19.81067994338538, 45.200882848233945], [19.81066349288529, 45.20090161934993], [19.810649724051054, 45.200921440033795], [19.810638769486214, 45.20094211940253], [19.810630734691845, 45.20096345830335], [19.810625697050458, 45.20098525123159], [19.810623705080637, 45.20100728830992], [19.810539524073437, 45.205046644990354], [19.810540596973627, 45.20506871397572], [19.810544724620367, 45.20509060235025], [19.8105518672656, 45.205112099316665], [19.810561956124936, 45.2051329978469], [19.810574894039984, 45.20515309667596], [19.810590556413914, 45.2051722022402], [19.810608792411312, 45.20519013054155], [19.810629426410728, 45.20520670891951], [19.81065225969597, 45.205221777713994], [19.81067707236983, 45.205235191803055], [19.810703625471813, 45.20524682200047], [19.810731663279505, 45.20525655629996], [19.810760915771365, 45.205264300953864], [19.810791101227263, 45.20526998137611], [19.810821928941714, 45.205273542860496], [19.81085310202363, 45.205274951107526]]], "type": "Polygon"}, "id": "0", "properties": {"broj_parcele": "1002", "confidence": "0.85", "inspektor_id": "1", "izvor_snimka": "simulirani_raster_na_osnovu_PostGIS_podataka", "katastarska_opstina": "Novi Sad I", "model": "KMeans segmentacija piksela", "napomena": "Automatski detektovan building footprint na raster snimku", "parcela_id": "2", "procenjena_povrsina_m2": "142067.19", "status_slucaja": "Detektovano ML"}, "type": "Feature"}, {"bbox": [19.800581582859483, 45.20080392940876, 19.805538503095345, 45.20533549463656], "geometry": {"coordinates": [[[19.800895120500527, 45.205293253449774], [19.804924693157787, 45.20533549463656], [19.804955911468234, 45.20533473770581], [19.80498687450104, 45.20533182126975], [19.805017284061844, 45.205326773415514], [19.805046847286754, 45.20531964275723], [19.805075279462923, 45.20531049796776], [19.80510230677058, 45.20529942711734], [19.805127668920168, 45.20528653682537], [19.805151121659154, 45.20527195123356], [19.80517243912433, 45.205255810810385], [19.805191416017045, 45.205238270998144], [19.80520786958033, 45.20521950071606], [19.805221641358905, 45.20519968073331], [19.805232598725134, 45.20517900192818], [19.805240636156235, 45.20515766344972], [19.805245676250394, 45.20513587079977], [19.80524767047209, 45.20511383385389], [19.805286277287788, 45.20326963576497], [19.805393927264195, 45.20321575186271], [19.805417495187132, 45.2032027380529], [19.805439231420884, 45.203188217979466], [19.80545894408593, 45.20317231982123], [19.805476459166645, 45.20315518392224], [19.805491622047416, 45.2031369615528], [19.805504298877516, 45.2031178135741], [19.80551437775261, 45.20309790901816], [19.80552176970255, 45.2030774235956], [19.805526409476705, 45.203056538144594], [19.805528256119832, 45.20303543703441], [19.805538503095345, 45.20254581892157], [19.805537540309768, 45.20252468842337], [19.80553377662108, 45.20250371507137], [19.805527245256723, 45.202483084010176], [19.805518003875967, 45.20246297736259], [19.80550613406078, 45.20244357262195], [19.80549174059559, 45.202425041085206], [19.805474950542198, 45.20240754634091], [19.80545591211807, 45.20239124282505], [19.80543479338789, 45.2023762744579], [19.805411780779906, 45.202362773373466], [19.805306434904722, 45.20230666122039], [19.805316853713137, 45.20180891228446], [19.805315891016452, 45.20178778178269], [19.805312127452357, 45.20176680842207], [19.80530559624721, 45.201746177347275], [19.80529635505886, 45.20172607068127], [19.805284485467592, 45.20170666591748], [19.805270092255846, 45.201688134353105], [19.805253302483187, 45.20167063957694], [19.80523426436461, 45.201654336025264], [19.805213145962085, 45.20163936761865], [19.805190133700993, 45.201625866491455], [19.805084789393206, 45.20156975414311], [19.80509520986669, 45.201072005182944], [19.805094139116466, 45.2010499361538], [19.805090013824486, 45.20102804759167], [19.805082873723, 45.20100655029509], [19.805072787578286, 45.200985651294225], [19.805059852528267, 45.20096555185718], [19.8050441931469, 45.2009464455516], [19.805025960244414, 45.200928516380586], [19.805005329414794, 45.200911937010716], [19.804982499344703, 45.20089686710915], [19.80495768990002, 45.20088345180603], [19.80493114000837, 45.20087182029686], [19.8049031053582, 45.20086208459829], [19.80487385593639, 45.20085433846944], [19.80484367342822, 45.20084865650892], [19.804812848504703, 45.20084509343645], [19.80478167802336, 45.200843683565935], [19.800989437431433, 45.20080392940876], [19.80095822157053, 45.200804685280865], [19.800927260815463, 45.200807600650165], [19.800896853331793, 45.20081264744033], [19.800867291957015, 45.200819777048565], [19.800838861380495, 45.20082892081355], [19.800811835401856, 45.200839990676755], [19.80078647429424, 45.200852880030396], [19.800763022297804, 45.20086746474411], [19.800741705267583, 45.20088360436037], [19.80072272849843, 45.200901143447076], [19.800706274747878, 45.200919913094445], [19.800692502476064, 45.200939732541634], [19.800681544319627, 45.200960410917546], [19.80067350581423, 45.20098174907894], [19.800668464378134, 45.201003541528344], [19.800666468566458, 45.20102557839295], [19.800581582859483, 45.20506492039976], [19.800582651906854, 45.205086989438634], [19.800586775727737, 45.20510887813342], [19.800593914610907, 45.20513037568372], [19.800603999808217, 45.20515127505587], [19.80061693419654, 45.20517137497676], [19.800632593213013, 45.205190481872236], [19.80065082605455, 45.20520841173142], [19.800671457130107, 45.20522499187877], [19.800694287751647, 45.20524006263721], [19.800719098047608, 45.20525347886584], [19.80074564908041, 45.20526511135785], [19.800773685147558, 45.205274848084855], [19.800802936244274, 45.20528259527583], [19.800833120663867, 45.20528827832026], [19.80086394771084, 45.20529184248668], [19.800895120500527, 45.205293253449774]]], "type": "Polygon"}, "id": "1", "properties": {"broj_parcele": "1001", "confidence": "0.85", "inspektor_id": "1", "izvor_snimka": "simulirani_raster_na_osnovu_PostGIS_podataka", "katastarska_opstina": "Novi Sad I", "model": "KMeans segmentacija piksela", "napomena": "Automatski detektovan building footprint na raster snimku", "parcela_id": "1", "procenjena_povrsina_m2": "141940.57", "status_slucaja": "Detektovano ML"}, "type": "Feature"}, {"bbox": [19.815438464164526, 45.20585593232523, 19.819214945599974, 45.20927554937177], "geometry": {"coordinates": [[[19.815986593540668, 45.20924609116144], [19.818831209435125, 45.20927554937177], [19.818862429795665, 45.20927478865973], [19.818893394337046, 45.20927186846934], [19.818923804850378, 45.20926681692395], [19.81895336846259, 45.20925968267319], [19.818981800457102, 45.20925053442455], [19.819008827015907, 45.209239460281566], [19.819034187856655, 45.209226566895346], [19.81905763873941, 45.209211978437416], [19.819078953818856, 45.20919583540383], [19.81909792781931, 45.209178293262056], [19.81911437801167, 45.209159520953726], [19.819128145973107, 45.20913969926754], [19.819139099112764, 45.209119019098196], [19.819147131948547, 45.20909767960786], [19.819152167122915, 45.209075886308135], [19.819154156147725, 45.209053849080846], [19.819214945599974, 45.20611612834551], [19.819213869331985, 45.206094059411136], [19.819209738288855, 45.20607217131902], [19.81920259225821, 45.20605067486315], [19.819192500063433, 45.20602977706564], [19.81917955890071, 45.20600967918297], [19.81916389340288, 45.20599057476783], [19.81914565443905, 45.205972647805126], [19.819125017661595, 45.20595607094013], [19.819102181814454, 45.2059410038159], [19.81907736681914, 45.20592759153584], [19.819050811656734, 45.20591596326633], [19.819022772066432, 45.205906230992824], [19.8189935180827, 45.20589848844144], [19.818963331434745, 45.205892810176366], [19.818932502833444, 45.205889250881725], [19.81890132917174, 45.20588784483504], [19.815819844989118, 45.20585593232523], [19.815788626476575, 45.20585669222459], [19.815757663650395, 45.20585961159213], [19.815727254696082, 45.205864662313026], [19.8156976924653, 45.205871795746596], [19.81566926165565, 45.20588094319471], [19.81564223606901, 45.205892016563325], [19.81561687597475, 45.20590490921094], [19.81559342560326, 45.20591949697546], [19.815572110793937, 45.205935639369955], [19.815553136820238, 45.205953180935595], [19.815536686412784, 45.205971952738714], [19.815522917999516, 45.20599177399772], [19.815511964179915, 45.206012453824044], [19.815503930447885, 45.2060337930605], [19.815498894175708, 45.20605558619922], [19.815496903868773, 45.20607762336082], [19.815438464164526, 45.2088929353382], [19.81543943067716, 45.208914065768454], [19.815443198387772, 45.20893503881251], [19.815449734039472, 45.20895566932797], [19.81545897994081, 45.20897577519597], [19.81547085447499, 45.20899517892883], [19.815485252820263, 45.209013709236984], [19.815502047875153, 45.20903120254091], [19.815521091380432, 45.2090475044153], [19.815542215227826, 45.20906247095228], [19.815565232944014, 45.209075970031805], [19.81579974306989, 45.20920083330323], [19.815827487367446, 45.2092140495987], [19.815857040771913, 45.209225134521695], [19.81588807682806, 45.20923396562463], [19.815920252702284, 45.2092404453563], [19.815953212969756, 45.20924450213944], [19.815986593540668, 45.20924609116144]]], "type": "Polygon"}, "id": "2", "properties": {"broj_parcele": "1002", "confidence": "0.85", "inspektor_id": "1", "izvor_snimka": "simulirani_raster_na_osnovu_PostGIS_podataka", "katastarska_opstina": "Novi Sad I", "model": "KMeans segmentacija piksela", "napomena": "Automatski detektovan building footprint na raster snimku", "parcela_id": "2", "procenjena_povrsina_m2": "78884.01", "status_slucaja": "Detektovano ML"}, "type": "Feature"}, {"bbox": [19.805477281989003, 45.205772075854796, 19.809259358968333, 45.20929454027588], "geometry": {"coordinates": [[[19.80579086098044, 45.20926235530316], [19.80887251789634, 45.20929454027588], [19.808903738343872, 45.20929378228813], [19.808934703349557, 45.20929086480361], [19.808965114700023, 45.20928581591963], [19.808994679514146, 45.209278684260156], [19.80902311306377, 45.20926953850774], [19.809050141515897, 45.20925846674187], [19.809075504569957, 45.20924557559078], [19.809098957964697, 45.20923098920444], [19.809120275830598, 45.20921484805898], [19.809139252865155, 45.20919730760366], [19.809155706310023, 45.209178536763886], [19.809169477711066, 45.209158716314214], [19.809180434444297, 45.20913803713742], [19.809188470993014, 45.20911669838614], [19.80919350996391, 45.20909490556484], [19.80919550283229, 45.20907286855075], [19.809259358968333, 45.206012753788116], [19.80925828655368, 45.205990684799204], [19.809254159343357, 45.20596879638598], [19.80924701708809, 45.205947299345496], [19.8092369285749, 45.205926400705486], [19.809223990964522, 45.205906301730565], [19.809208328855576, 45.205887195983934], [19.809190093084542, 45.20586926746331], [19.809169459273047, 45.205852688829005], [19.809146626136464, 45.205837619741075], [19.8091218135702, 45.205824205321846], [19.809095260531947, 45.20581257475831], [19.809067222740456, 45.20580284005803], [19.809037970212856, 45.20579509497046], [19.809007784664338, 45.20578941408423], [19.808976956795192, 45.20578585210869], [19.808945783491307, 45.205784443347184], [19.807760603078886, 45.205772075854796], [19.80772717289353, 45.20577296974882], [19.807694060058992, 45.20577633905736], [19.8076616303421, 45.20578214656278], [19.80763024196417, 45.20579032811489], [19.807600241644174, 45.20580079333955], [19.80757196076898, 45.20581342663697], [19.807417143343738, 45.20589092077446], [19.805861754709994, 45.20587466676921], [19.805830536110907, 45.205875423944605], [19.805799572820952, 45.20587834060656], [19.805769163030096, 45.20588338866632], [19.805739599598056, 45.205890519508834], [19.805711167234005, 45.20589966446091], [19.80568413975479, 45.20591073545259], [19.805658777448, 45.20592362586522], [19.805635324565333, 45.20593821155821], [19.805614006970377, 45.20595435206464], [19.805595029963406, 45.20597189194383], [19.805578576304253, 45.20599066227833], [19.80556480445218, 45.20601048230074], [19.805553847039782, 45.20603116113439], [19.805545809595557, 45.20605249963164], [19.80554076952754, 45.20607429229175], [19.80553877537768, 45.20609632923991], [19.805477281989003, 45.209034035423755], [19.8054783529734, 45.20905610442206], [19.805482478931296, 45.209077992947485], [19.805489620130896, 45.20909949020125], [19.805499707801747, 45.209120389152524], [19.80551264479689, 45.20914048853226], [19.805528306528366, 45.20915959477155], [19.80554654216694, 45.20917752386578], [19.805567176094623, 45.209194103146835], [19.805590009595917, 45.20920917294592], [19.80561482277153, 45.20922258813141], [19.80564137665614, 45.20923421950653], [19.80566941551979, 45.209243955053644], [19.805698669330773, 45.209251701013116], [19.805728856356254, 45.20925738278626], [19.805759685875632, 45.20926094565389], [19.80579086098044, 45.20926235530316]]], "type": "Polygon"}, "id": "3", "properties": {"broj_parcele": "1001", "confidence": "0.85", "inspektor_id": "1", "izvor_snimka": "simulirani_raster_na_osnovu_PostGIS_podataka", "katastarska_opstina": "Novi Sad I", "model": "KMeans segmentacija piksela", "napomena": "Automatski detektovan building footprint na raster snimku", "parcela_id": "1", "procenjena_povrsina_m2": "80403.45", "status_slucaja": "Detektovano ML"}, "type": "Feature"}, {"bbox": [19.840446492362947, 45.21077476530257, 19.845195224326694, 45.21529536642421], "geometry": {"coordinates": [[[19.84076024568741, 45.215254524784164], [19.844790579453086, 45.21529536642421], [19.844821802905532, 45.215294598644846], [19.844852769532604, 45.21529167143744], [19.84488318110532, 45.21528661299291], [19.844912744740412, 45.215279472027355], [19.844941175721086, 45.21527031731289], [19.844968200239087, 45.215259237015374], [19.84499355803173, 45.215246337845144], [19.845017004888444, 45.21523174402945], [19.84503831500267, 45.21521559611594], [19.845057283146566, 45.21519804961906], [19.845073726647417, 45.21517927352243], [19.845087487146856, 45.2151594486512], [19.845098432125884, 45.21513876593074], [19.845106456181007, 45.21511742454779], [19.845111482039243, 45.215095630032174], [19.845113461302176, 45.21507359227744], [19.845195224326694, 45.21103419276536], [19.845194137950475, 45.21101212399318], [19.84518999660393, 45.210990236756324], [19.845182840173937, 45.210968741840546], [19.845172737584008, 45.21094784625313], [19.845159786130452, 45.21092775122924], [19.845144110545203, 45.21090865029409], [19.84512586179452, 45.210890727399], [19.84510521562503, 45.2108741551501], [19.84508237087111, 45.21085909314601], [19.845057547540055, 45.21084568644082], [19.845030984693217, 45.210834064147186], [19.845002938143796, 45.21082433819305], [19.844973677993263, 45.21081660224366], [19.844943486030232, 45.210810930799624], [19.84491265301675, 45.21080737847935], [19.844881475888254, 45.21080597949322], [19.841799697547525, 45.21077476530257], [19.84176626476278, 45.21077566913725], [19.84173315083095, 45.21077904830479], [19.84170072153099, 45.21078486547866], [19.841669335079605, 45.21079305640184], [19.841639338174495, 45.21080353059674], [19.841611062164805, 45.21081617236445], [19.84145627633287, 45.21089371291334], [19.840848972364938, 45.21088755011792], [19.840817751293915, 45.210888316835195], [19.84078678687636, 45.21089124297248], [19.84075637731311, 45.21089630034972], [19.840726815461686, 45.21090344026215], [19.840698386016044, 45.21091259394924], [19.84067136276492, 45.21092367325689], [19.840646005955193, 45.21093657148638], [19.840622559785636, 45.21095116442185], [19.84060125005517, 45.21096731152659], [19.840582281988347, 45.21098485729641], [19.840565838258904, 45.21100363275715], [19.840552077230477, 45.21102345709198], [19.840541131431426, 45.21104413938273], [19.840533106278414, 45.21106548044846], [19.84052807906111, 45.2110872747637], [19.840526098197703, 45.21110931243771], [19.840446492362947, 45.21502629943748], [19.840447576946975, 45.2150483682219], [19.840451716733956, 45.21507025560016], [19.84045887185892, 45.21509175078453], [19.84046897341729, 45.215112646764126], [19.840481924128376, 45.2151327422985], [19.840497599272112, 45.215151843855764], [19.8405158478901, 45.21516976747643], [19.840536494239345, 45.21518634054507], [19.84055933948472, 45.21520140345271], [19.840584163613823, 45.21521481113413], [19.84061072755584, 45.215226434464775], [19.840638775483956, 45.21523616150452], [19.84066803727916, 45.215243898575636], [19.840698231131718, 45.21524957116507], [19.840729066255285, 45.21525312464203], [19.84076024568741, 45.215254524784164]]], "type": "Polygon"}, "id": "4", "properties": {"broj_parcele": "120", "confidence": "0.85", "inspektor_id": "1", "izvor_snimka": "simulirani_raster_na_osnovu_PostGIS_podataka", "katastarska_opstina": "Sremska Kamenica", "model": "KMeans segmentacija piksela", "napomena": "Automatski detektovan building footprint na raster snimku", "parcela_id": "5", "procenjena_povrsina_m2": "141180.85", "status_slucaja": "Detektovano ML"}, "type": "Feature"}, {"bbox": [19.84558293439304, 45.21583661197453, 19.849316673216666, 45.2192554513962], "geometry": {"coordinates": [[[19.84589673006978, 45.21922434325476], [19.8489789692683, 45.2192554513962], [19.849010194856014, 45.21925468249313], [19.849041163444763, 45.21925175417116], [19.84907157678667, 45.219246694631934], [19.849101141981432, 45.21923955260209], [19.84912957429723, 45.219230396864006], [19.84915659991295, 45.21921931559337], [19.849181958555338, 45.21920641550993], [19.849205406005638, 45.21919182084973], [19.849226716451582, 45.2191756721685], [19.849245684662126, 45.21915812498815], [19.849262127963915, 45.21913934829881], [19.849275888000502, 45.219119522931415], [19.849286832257345, 45.21909883981604], [19.849294855337906, 45.2190774981433], [19.849299879978595, 45.21905570344577], [19.849301857792714, 45.21903366561872], [19.849316673216666, 45.21829922899508], [19.84931569406058, 45.2182780987592], [19.849311913326243, 45.21825712673641], [19.84930536439157, 45.21823649805959], [19.849296105070934, 45.21821639483053], [19.849284217104668, 45.21819699451231], [19.849269805437434, 45.218178468362886], [19.849252997291707, 45.21816097992326], [19.849233941044666, 45.21814468357375], [19.84921280491831, 45.21812972317136], [19.84918977549447, 45.218116230779785], [19.84908435697706, 45.21806015844843], [19.84912403366611, 45.21609352947353], [19.849122945711986, 45.216071460741865], [19.84911880252669, 45.21604957364791], [19.849111644014794, 45.21602807897604], [19.84910153911988, 45.21600718373116], [19.849088585160438, 45.21598708914517], [19.849072906892545, 45.21596798873905], [19.849054655308297, 45.215950066459044], [19.849034006181597, 45.21593349490535], [19.84901115837532, 45.21591843366988], [19.848986331926135, 45.2159050277993], [19.848959765925436, 45.21589340639829], [19.848931716216796, 45.21588368138615], [19.848902452932112, 45.215875946419075], [19.848872257890168, 45.21587027598819], [19.84884142188267, 45.215866724702174], [19.848810241873892, 45.215865326761445], [19.84596526704572, 45.21583661197453], [19.845934043305597, 45.21583738006367], [19.84590307643135, 45.21584030756163], [19.845872664647477, 45.215845366275246], [19.845843100832887, 45.21585250748691], [19.845814669700438, 45.21586166242356], [19.845787645055115, 45.21587274291906], [19.84576228715722, 45.215885642263245], [19.845738840216004, 45.215900236229544], [19.845717530037827, 45.21591638427132], [19.845698561851556, 45.21593393087533], [19.845682118332064, 45.21595270705938], [19.84566835784098, 45.21597253199972], [19.845657412901488, 45.21599321477229], [19.84564938892197, 45.216014556191574], [19.845644363180792, 45.21603635072865], [19.845642384081934, 45.216058388490644], [19.84558293439304, 45.21899613175414], [19.84558402101005, 45.219018200495285], [19.845588163029316, 45.219040087694914], [19.845595320564367, 45.219061582567036], [19.84560542468742, 45.21908247810376], [19.845618378093086, 45.21910257306892], [19.845634056035344, 45.21912167393611], [19.845652307528848, 45.219139596752456], [19.84567295680291, 45.21915616891029], [19.845695804994232, 45.21917123080942], [19.845720632062047, 45.219184637394335], [19.845747198907233, 45.21919625955106], [19.845775249675015, 45.21920598535072], [19.845804514219026, 45.2192137211276], [19.845834710703077, 45.21921939238105], [19.84586554831547, 45.21922294449316], [19.84589673006978, 45.21922434325476]]], "type": "Polygon"}, "id": "5", "properties": {"broj_parcele": "120", "confidence": "0.85", "inspektor_id": "1", "izvor_snimka": "simulirani_raster_na_osnovu_PostGIS_podataka", "katastarska_opstina": "Sremska Kamenica", "model": "KMeans segmentacija piksela", "napomena": "Automatski detektovan building footprint na raster snimku", "parcela_id": "5", "procenjena_povrsina_m2": "74578.94", "status_slucaja": "Detektovano ML"}, "type": "Feature"}, {"bbox": [19.87044356724003, 45.23077663866837, 19.875317816352393, 45.23530818520852], "geometry": {"coordinates": [[[19.870953485579125, 45.23526839541086], [19.8749852762008, 45.23530818520852], [19.875016510372447, 45.23530740927818], [19.87504748649859, 45.23530447398314], [19.875077906258767, 45.235299407592244], [19.87510747669086, 45.23529225889808], [19.87513591301261, 45.23528309674723], [19.875162941364326, 45.235272009377134], [19.87518830144641, 45.235259103566285], [19.875211749026235, 45.235244503605855], [19.87523305829029, 45.23522835010268], [19.875252024018923, 45.23521079862506], [19.87526846356268, 45.23519201820454], [19.875282218601317, 45.23517218970795], [19.87529315666842, 45.235151504095555], [19.875301172427076, 45.23513016058194], [19.8753061886842, 45.23510836471748], [19.875308157133844, 45.235086326408684], [19.875317816352393, 45.234596698965035], [19.875316827394816, 45.23457556891506], [19.87531303611702, 45.23455459770858], [19.87530647599, 45.23453397047124], [19.875297204926927, 45.234513869292115], [19.875285304771797, 45.23449447161623], [19.875270880576863, 45.2344759486782], [19.8752540596752, 45.23445846399064], [19.875234990556574, 45.2344421719008], [19.875213841556626, 45.23442721622803], [19.87519079937081, 45.23441372899432], [19.87508532499755, 45.23435768028252], [19.87515069158133, 45.23104456305884], [19.875149593378158, 45.23102249453129], [19.875145439211142, 45.23100060833034], [19.875138269090634, 45.23097911523179], [19.875128152071994, 45.230958222225375], [19.875115185590488, 45.230938130521466], [19.875099494522775, 45.23091903361322], [19.87508122998422, 45.23090111541325], [19.87506056787349, 45.23088454848244], [19.87503770717849, 45.23086949236821], [19.875012868060015, 45.230856092067874], [19.874986289731467, 45.23084447663245], [19.874958228155133, 45.23083475792383], [19.874928953577207, 45.23082702953747], [19.874898747925226, 45.23082136590113], [19.874867902093072, 45.23081782155807], [19.874836713139626, 45.230816430641816], [19.870805240307778, 45.23077663866837], [19.87077400858469, 45.230777413471095], [19.870743034725365, 45.23078034763103], [19.870712617021567, 45.23078541289088], [19.870683048409216, 45.23079256046996], [19.87065461364738, 45.23080172153391], [19.870627586575985, 45.23081280785758], [19.870602227478713, 45.23082571267471], [19.87057878057636, 45.23084031170597], [19.870557471674914, 45.23085646435598], [19.870538505990947, 45.2308740150671], [19.87052206617525, 45.2308927948176], [19.87050831055378, 45.23091262274935], [19.870497371602816, 45.230933307909545], [19.87048935467309, 45.23095465108959], [19.87048433697507, 45.23097644674367], [19.870482366835287, 45.23099848496812], [19.87044356724003, 45.232956992461645], [19.870444554374185, 45.23297812254182], [19.870448343764412, 45.23299909389714], [19.870454901962425, 45.233019721400154], [19.87046417107775, 45.23303982295855], [19.87047606928867, 45.233059221122744], [19.870490491564418, 45.233077744652256], [19.87050731059227, 45.23309523002746], [19.870526377901367, 45.233111522893005], [19.870547525173304, 45.23312647942053], [19.87057056572797, 45.23313996757838], [19.870676033351515, 45.23319602040678], [19.870639501225746, 45.23504025155637], [19.87064059772923, 45.23506232009572], [19.870644750429136, 45.23508420643123], [19.870651919336122, 45.23510569978523], [19.870662035412895, 45.235126593164445], [19.870675001238943, 45.235146685353484], [19.870690691948635, 45.23516578285267], [19.87070895643366, 45.23518370174157], [19.870729618798215, 45.23520026945033], [19.870752480052932, 45.23521532642165], [19.870777320031227, 45.2352287276474], [19.870803899509646, 45.235240344065254], [19.870831962511737, 45.23525006380164], [19.87086123877332, 45.23525779324917], [19.87089144634534, 45.23526345796818], [19.870922294309313, 45.23526700340371], [19.870953485579125, 45.23526839541086]]], "type": "Polygon"}, "id": "6", "properties": {"broj_parcele": "501", "confidence": "0.85", "inspektor_id": "1", "izvor_snimka": "simulirani_raster_na_osnovu_PostGIS_podataka", "katastarska_opstina": "Petrovaradin", "model": "KMeans segmentacija piksela", "napomena": "Automatski detektovan building footprint na raster snimku", "parcela_id": "4", "procenjena_povrsina_m2": "139028.32", "status_slucaja": "Detektovano ML"}, "type": "Feature"}, {"bbox": [19.87554266796283, 45.23584679084768, 19.879320690941732, 45.23926485548013], "geometry": {"coordinates": [[[19.875856693741476, 45.23923454548894], [19.87894004666523, 45.23926485548013], [19.8789712829732, 45.239264078489065], [19.87900226107067, 45.239261142142105], [19.879032682618195, 45.239256074718185], [19.879062254636438, 45.23924892501985], [19.87909069232787, 45.23923976190339], [19.87911772181961, 45.23922867361551], [19.87914308280108, 45.239215766943545], [19.879166531030986, 45.23920116618699], [19.879187840689564, 45.239185011960295], [19.879206806553356, 45.23916745983877], [19.879223245971616, 45.23914867886017], [19.8792370006253, 45.239128849896645], [19.879247938051705, 45.239108163913016], [19.87925595292009, 45.23908682012741], [19.87926096804595, 45.23906502409282], [19.87926293513423, 45.2390429857174], [19.879320690941732, 45.23610521846249], [19.879319591064068, 45.236083149977716], [19.87931543496214, 45.23606126392851], [19.879308262664928, 45.236039771089146], [19.879298143248757, 45.236018878446934], [19.87928517417198, 45.235998787208686], [19.879269480336255, 45.23597969086309], [19.879251212883602, 45.23596177331735], [19.87923054774075, 45.235945207126036], [19.87920768392481, 45.23593015182942], [19.87918284162663, 45.23591675241699], [19.87915626009023, 45.2359051379312], [19.879128195308795, 45.235895420224786], [19.879098917559382, 45.235887692883566], [19.87906870880007, 45.23588203032521], [19.879037859954668, 45.235878487082616], [19.87900666811107, 45.2358770972787], [19.875923498328408, 45.23584679084768], [19.8758922638686, 45.235847567023285], [19.87586128748584, 45.23585050254474], [19.87583086749619, 45.235855569141684], [19.87580129685759, 45.23586271802052], [19.87577286034861, 45.23587188033438], [19.87574583182602, 45.23588296784608], [19.875720471587464, 45.23589587377789], [19.875697023864728, 45.235910473839795], [19.87567571447171, 45.23592662742645], [19.875656748629712, 45.23594417897122], [19.875640308991052, 45.23596295944434], [19.875626553879975, 45.235982787980724], [19.875615615767853, 45.236003473621714], [19.875607599997338, 45.236024817154124], [19.875602583767737, 45.23604661302872], [19.875600615391434, 45.23606865133975], [19.87554266796283, 45.239006414869664], [19.875543766411912, 45.23902848336601], [19.875547921257198, 45.23905036952934], [19.87555509248869, 45.23907186258362], [19.875565211046705, 45.23909275553848], [19.875578179486837, 45.2391128471826], [19.875593872918277, 45.23913194402152], [19.87561214020651, 45.239149862141254], [19.875632805428733, 45.2391664289793], [19.875655669568047, 45.23918148498672], [19.875680512430097, 45.239194885164714], [19.87570709476366, 45.239206500461], [19.875735160564776, 45.23921621901284], [19.87576443954231, 45.23922394722424], [19.87579464972105, 45.239229610667465], [19.87582550015742, 45.23923315479983], [19.875856693741476, 45.23923454548894]]], "type": "Polygon"}, "id": "7", "properties": {"broj_parcele": "501", "confidence": "0.85", "inspektor_id": "1", "izvor_snimka": "simulirani_raster_na_osnovu_PostGIS_podataka", "katastarska_opstina": "Petrovaradin", "model": "KMeans segmentacija piksela", "napomena": "Automatski detektovan building footprint na raster snimku", "parcela_id": "4", "procenjena_povrsina_m2": "79010.63", "status_slucaja": "Detektovano ML"}, "type": "Feature"}, {"bbox": [19.75044138291356, 45.25083010761045, 19.755167520826696, 45.255345236453664], "geometry": {"coordinates": [[[19.750960007732083, 45.255321903087065], [19.75309514234762, 45.255345236453664], [19.753128602140034, 45.25534435888409], [19.75316174672134, 45.25534100577244], [19.753194209965628, 45.25533521415828], [19.753225633273523, 45.25532704801759], [19.753255669533484, 45.25531659755618], [19.75328398695624, 45.25530397821313], [19.75343901205969, 45.25522656036735], [19.754758479925083, 45.25524095595454], [19.75478972595756, 45.255240213046726], [19.75482071843216, 45.255237310558016], [19.754851158870963, 45.255232276441234], [19.754880754112698, 45.2552251591782], [19.754909219136156, 45.255216027312756], [19.754936279805232, 45.255204968790714], [19.754961675509062, 45.2551920901127], [19.754985161671957, 45.25517751530861], [19.75500651210882, 45.25516138474299], [19.75502552120345, 45.25514385376326], [19.75504200588875, 45.25512509120353], [19.755055807409722, 45.25510527775866], [19.755066792852297, 45.25508460424394], [19.755074856423295, 45.255063269757486], [19.75507992046918, 45.25504147976269], [19.755081936223757, 45.25501944410958], [19.755167520826696, 45.251102607316476], [19.755166468887158, 45.25108053820698], [19.75516235959208, 45.25105864819681], [19.755155232519662, 45.25103714809846], [19.755145156310718, 45.251016244969094], [19.755132228007483, 45.25099614011657], [19.755116572118975, 45.25097702716069], [19.755098339421767, 45.25095909016861], [19.755077705507894, 45.25094250188219], [19.755054869093726, 45.25092742205449], [19.75503005010624, 45.250913995911226], [19.755003487564977, 45.25090235275233], [19.754975437280198, 45.25089260470661], [19.75494616938936, 45.25088484565211], [19.754915965755607, 45.250879150311896], [19.754885117253394, 45.25087557353455], [19.754853920967317, 45.250874149765984], [19.75082120484723, 45.25083010761045], [19.750789961206475, 45.250830849458396], [19.75075897095216, 45.250833750878904], [19.75072853253393, 45.250838783930014], [19.75069893908719, 45.2508459001412], [19.75067047561016, 45.250855030980205], [19.750643416219308, 45.25086608851293], [19.75061802150954, 45.250878966250376], [19.750594536044606, 45.25089354017405], [19.750573186001866, 45.25090966993032], [19.750554176994083, 45.25092720018207], [19.750537692089264, 45.250945962104595], [19.750523890047585, 45.25096577501145], [19.750512903792377, 45.25098644809453], [19.750504839129917, 45.25100778226156], [19.750499773730372, 45.25102957205355], [19.75049775637965, 45.25105160762329], [19.75044138291356, 45.25362202754178], [19.750442325724567, 45.253643158107515], [19.750446072079637, 45.253664132908405], [19.750452588910395, 45.25368476678652], [19.750461818691548, 45.25370487759335], [19.75047367994862, 45.25372428779763], [19.750488067977066, 45.25374282605262], [19.75050485576651, 45.25376032870867], [19.750523895121855, 45.253776641257915], [19.75054501797148, 45.25379161969826], [19.750568037850876, 45.25380513180456], [19.750673422857673, 45.253861294406136], [19.750646402133857, 45.25509343407824], [19.750647452361957, 45.25511550319611], [19.75065156017763, 45.25513739333795], [19.750658686023808, 45.25515889368947], [19.750668761277904, 45.25517979719001], [19.750681688912564, 45.25519990252671], [19.750697344429973, 45.25521901607325], [19.75071557706076, 45.255236953754704], [19.750736211215912, 45.255253542820206], [19.750759048177745, 45.25526862350677], [19.750783868013652, 45.255282050577904], [19.750810431694163, 45.255293694722326], [19.750838483394997, 45.2553034437995], [19.750867752960804, 45.25531120391942], [19.75089795850704, 45.25531690034705], [19.750928809134717, 45.25532047822204], [19.750960007732083, 45.255321903087065]]], "type": "Polygon"}, "id": "8", "properties": {"broj_parcele": "2045", "confidence": "0.85", "inspektor_id": "1", "izvor_snimka": "simulirani_raster_na_osnovu_PostGIS_podataka", "katastarska_opstina": "Veternik", "model": "KMeans segmentacija piksela", "napomena": "Automatski detektovan building footprint na raster snimku", "parcela_id": "3", "procenjena_povrsina_m2": "137508.89", "status_slucaja": "Detektovano ML"}, "type": "Feature"}, {"bbox": [19.75554280140354, 45.25578312360716, 19.75931753751753, 45.259326681541594], "geometry": {"coordinates": [[[19.75585644845349, 45.259293120536626], [19.758940753338315, 45.259326681541594], [19.75897200158331, 45.259325937513296], [19.759002996096797, 45.259323033913], [19.759033438381216, 45.25931799870424], [19.759063035257523, 45.25931088037936], [19.75909150168877, 45.259301747492444], [19.759118563525288, 45.259290687999105], [19.75914396014498, 45.259277808409344], [19.75916744696333, 45.25926323276184], [19.75918879778892, 45.25924710142928], [19.759207807001822, 45.25922956976642], [19.759224291533798, 45.259210806614], [19.759238092631318, 45.259190992672536], [19.7592490773844, 45.25917031876216], [19.759257140006504, 45.259148983984744], [19.759262202853225, 45.259127193806535], [19.75926421716993, 45.25910515807928], [19.75931753751753, 45.256657133290176], [19.759316591386824, 45.25663600277287], [19.759312841587295, 45.25661502823669], [19.759306321223796, 45.25659439483666], [19.759297087858485, 45.25657428471629], [19.75928522300259, 45.25655487539951], [19.75927083139677, 45.25653633822369], [19.759254040086415, 45.256518836827176], [19.7592349973001, 45.25650252570468], [19.75921387114102, 45.2564875488436], [19.759190848103014, 45.256474038452936], [19.75908544975143, 45.25641788359576], [19.759093625751508, 45.256042549216346], [19.759092572240064, 45.25602048014447], [19.759088461117706, 45.2559985902742], [19.759081331980227, 45.25597709041665], [19.75907125348833, 45.25595618762669], [19.75905832270625, 45.25593608320889], [19.759042664166856, 45.25591697077887], [19.75902442867227, 45.25589903439874], [19.75900379184145, 45.25588244680444], [19.758980952418874, 45.25586736774236], [19.758956130360477, 45.2558539424309], [19.75892956471538, 45.25584230016191], [19.758901511323742, 45.25583255305567], [19.758872240352925, 45.255824794981145], [19.758842033695743, 45.25581910065199], [19.75881118225577, 45.25581552490704], [19.75877998314588, 45.25581410218227], [19.755933107990316, 45.25578312360716], [19.75590186166806, 45.25578386682473], [19.755870868944267, 45.255786769604015], [19.755840428292363, 45.25579180398993], [19.75581083286926, 45.25579892149914], [19.755782367692213, 45.25580805358683], [19.75575530689406, 45.255819112306945], [19.755729911083264, 45.255831991159], [19.75570642483418, 45.255846566113775], [19.755685074331712, 45.25586269680773], [19.755666065193054, 45.25588022789471], [19.755649580487486, 45.25589899054196], [19.75563577897325, 45.255918804056066], [19.755624793568607, 45.25593947762304], [19.75561673007164, 45.25596081214599], [19.7556116661413, 45.255982602162476], [19.75560965054934, 45.25600463782314], [19.75554280140354, 45.25906466468566], [19.755543853569826, 45.2590867337646], [19.755547963524577, 45.259108623738655], [19.755555091690123, 45.25913012379513], [19.75556516942154, 45.25915102687621], [19.755578099667616, 45.259171131673085], [19.755593757905384, 45.25919024456464], [19.75561199333928, 45.25920818148224], [19.75563263035329, 45.259224769682376], [19.755655470202203, 45.2592398494104], [19.755680292925593, 45.25925327543905], [19.7557068594662, 45.259264918467096], [19.755734913972184, 45.25927466636474], [19.75576418626119, 45.259282425253325], [19.755794394422434, 45.25928812040969], [19.755825247531753, 45.259291696985734], [19.75585644845349, 45.259293120536626]]], "type": "Polygon"}, "id": "9", "properties": {"broj_parcele": "2045", "confidence": "0.85", "inspektor_id": "1", "izvor_snimka": "simulirani_raster_na_osnovu_PostGIS_podataka", "katastarska_opstina": "Veternik", "model": "KMeans segmentacija piksela", "napomena": "Automatski detektovan building footprint na raster snimku", "parcela_id": "3", "procenjena_povrsina_m2": "81163.16", "status_slucaja": "Detektovano ML"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+    geo_json_66b692c581d5f1119573329960517d5f.bindTooltip(
+    function(layer){
+    let div = L.DomUtil.create('div');
+    
+    let handleObject = feature => {
+        if (feature === null) {
+            return '';
+        } else if (typeof(feature)=='object') {
+            return JSON.stringify(feature);
+        } else {
+            return feature;
+        }
+    }
+    let fields = ["procenjena_povrsina_m2", "confidence", "status_slucaja", "izvor_snimka", "model", "napomena"];
+    let aliases = ["procenjena_povrsina_m2", "confidence", "status_slucaja", "izvor_snimka", "model", "napomena"];
+    let table = '<table>' +
+        String(
+        fields.map(
+        (v,i)=>
+        `<tr>
+            <th>${aliases[i]}</th>
+            
+            <td>${handleObject(layer.feature.properties[v])}</td>
+        </tr>`).join(''))
+    +'</table>';
+    div.innerHTML=table;
+    
+    return div
+    }
+    ,{
+  "sticky": true,
+  "className": "foliumtooltip",
+});
+                     
+    
+        function geo_json_ef2fd4a854a513daa6191d6422332f11_styler(feature) {
+            switch(feature.id) {
+                default:
+                    return {"color": "pink", "fillColor": "pink", "fillOpacity": 0.35, "weight": 2};
+            }
+        }
+
+        function geo_json_ef2fd4a854a513daa6191d6422332f11_onEachFeature(feature, layer) {
+
+            layer.on({
+            });
+        };
+        var geo_json_ef2fd4a854a513daa6191d6422332f11 = L.geoJson(null, {
+                onEachFeature: geo_json_ef2fd4a854a513daa6191d6422332f11_onEachFeature,
+            
+                style: geo_json_ef2fd4a854a513daa6191d6422332f11_styler,
+            ...{
+}
+        });
+
+        function geo_json_ef2fd4a854a513daa6191d6422332f11_add (data) {
+            geo_json_ef2fd4a854a513daa6191d6422332f11
+                .addData(data);
+        }
+            geo_json_ef2fd4a854a513daa6191d6422332f11_add({"bbox": [19.754725605049337, 45.2050999350617, 19.880273976055143, 45.25990004668588], "features": [{"bbox": [19.81472670825299, 45.2050999350617, 19.820273292723037, 45.20990006433411], "geometry": {"coordinates": [[[19.8147267751957, 45.205999993244646], [19.81472670825299, 45.20899999255783], [19.814732837349876, 45.209088213279415], [19.814751169685486, 45.20917558454391], [19.81478152876799, 45.20926126493252], [19.81482362227999, 45.209344429306604], [19.81487704489169, 45.20942427675412], [19.814941282162668, 45.20950003830337], [19.815015715494656, 45.20957098432888], [19.815099628087832, 45.209636431578666], [19.815192211843147, 45.209695749754815], [19.815292575144337, 45.209748367584304], [19.81539975144466, 45.20979377832123], [19.81551270857565, 45.20983154462775], [19.81563035868826, 45.20986130278637], [19.815751568730512, 45.20988276620339], [19.815875171360865, 45.20989572816928], [19.81599997619196, 45.20990006384976], [19.819000023517233, 45.20990006433411], [19.819124828360785, 45.2098957286956], [19.819248431015648, 45.209882766773816], [19.81936964109492, 45.209861303401375], [19.819487291257044, 45.209831545286136], [19.819600248449632, 45.209793779020245], [19.81970742482282, 45.209748368319694], [19.81980778820699, 45.20969575052102], [19.819900372053972, 45.209636432368974], [19.81998428474585, 45.20957098513573], [19.82005871818177, 45.20950003911847], [19.820122955560027, 45.20942427756882], [19.82017637828049, 45.20934443011209], [19.820218471900898, 45.209261265720095], [19.82024883108977, 45.20917558530508], [19.820267163528193, 45.20908821400627], [19.820273292723037, 45.20899999324304], [19.82027322578033, 45.20599999255944], [19.820267092699694, 45.20591176980504], [19.82024875659344, 45.205824396840654], [19.820218394106874, 45.20573871512996], [19.82017629770448, 45.20565554984498], [19.82012287285137, 45.205575701919194], [19.82005863410658, 45.205499940334704], [19.819984200166115, 45.20542899471659], [19.819900287903344, 45.20536354830698], [19.819807705464317, 45.205304231385455], [19.81970734448443, 45.20525161519984], [19.819600171501495, 45.20520620646535], [19.81948721864782, 45.20516844248526], [19.819369573710993, 45.20513868694008], [19.819248369659004, 45.20511722638556], [19.81912477373055, 45.20510426749351], [19.81899997619554, 45.2050999350617], [19.816000023513634, 45.20509993554611], [19.815875225991086, 45.20510426801989], [19.81575163008715, 45.205117226956034], [19.81563042607218, 45.20513868755514], [19.815512781184875, 45.20516844314373], [19.815399828392795, 45.20520620716445], [19.815292655482725, 45.2052516159353], [19.815192294585827, 45.20530423215172], [19.815099712238467, 45.205363549097356], [19.815015800074402, 45.20542899552349], [19.81494136623787, 45.205499941149846], [19.814877127600365, 45.20557570273396], [19.814823702856007, 45.205655550650505], [19.814781606562025, 45.20573871591757], [19.81475124418182, 45.20582439760188], [19.814732908178378, 45.20591177053192], [19.8147267751957, 45.205999993244646]]], "type": "Polygon"}, "id": "0", "properties": {"bespravni_id": "2", "datum_detekcije": "2024-02-20", "inspektor_id": "2", "napomena": "Nadogradnja sprata", "parcela_id": "2", "procenjena_povrsina_m2": "85.0", "status_slucaja": "U proceduri"}, "type": "Feature"}, {"bbox": [19.754725605049337, 45.25509995271135, 19.76027439597555, 45.25990004668588], "geometry": {"coordinates": [[[19.754725672168945, 45.25599999324939], [19.754725605049337, 45.258999992528466], [19.75473173945069, 45.25908821151722], [19.75475008766387, 45.25917558106603], [19.754780473044296, 45.25926125977262], [19.754822603021463, 45.25934442251451], [19.75487607191454, 45.25942426839541], [19.75494036483752, 45.25950002845872], [19.755014862656303, 45.25957097309321], [19.75509884795012, 45.259636419060264], [19.755191511919836, 45.259695736074335], [19.755291962176724, 45.2597483528735], [19.755399231336625, 45.25979376272178], [19.755512286336778, 45.2598315282898], [19.755630038385537, 45.25986128586719], [19.755751353449174, 45.25988274886572], [19.75587506317463, 45.25989571057992], [19.75599997614306, 45.25990004617787], [19.759000023551387, 45.25990004668588], [19.75912493653284, 45.259895711131975], [19.759248646283993, 45.259882749464104], [19.75936996138646, 45.25986128651236], [19.75948771348719, 45.25983152898056], [19.759600768552, 45.2597937634552], [19.759708037788407, 45.25974835364514], [19.75980848813244, 45.25969573687833], [19.759901152198427, 45.25963641988961], [19.759985137595905, 45.25957097393993], [19.760059635523856, 45.25950002931413], [19.760123928559526, 45.25942426925047], [19.76017739756685, 45.25934442335994], [19.7602195276579, 45.25926126059926], [19.76024991315007, 45.25917558186504], [19.760268261471268, 45.259088212280254], [19.76027439597555, 45.258999993247784], [19.760274328855946, 45.25599999253006], [19.760268190455943, 45.25591177150498], [19.760249838458062, 45.25582440025369], [19.760219449660806, 45.25573872022336], [19.76017731678222, 45.25565555656985], [19.760123845638827, 45.25557571021097], [19.76005955123561, 45.25549995011365], [19.759985052804712, 45.25542900588865], [19.759901067840676, 45.25536356076467], [19.75980840518977, 45.25530424500889], [19.75970795725992, 45.255251629857824], [19.75960069142633, 45.25520622201671], [19.75948764071548, 45.25516845878016], [19.759369893857354, 45.25513870382147], [19.759248584801412, 45.255117243690734], [19.759124881797515, 45.25510428505559], [19.75899997614665, 45.25509995271135], [19.756000023547788, 45.25509995321941], [19.75587511790996, 45.255104285607715], [19.755751414931762, 45.25511724428917], [19.755630105914655, 45.25513870446671], [19.755512359108497, 45.25516845947097], [19.755399308462316, 45.255206222750196], [19.75529204270523, 45.25525163062952], [19.755191594862524, 45.25530424581294], [19.755098932307888, 45.25536356159408], [19.755014947447513, 45.25542900673541], [19.75494044912578, 45.255499950969096], [19.75487615483526, 45.25557571106606], [19.754822683806108, 45.2556555574153], [19.7547805510414, 45.25573872105004], [19.75475016235589, 45.255824401052706], [19.754731810466026, 45.25591177226801], [19.754725672168945, 45.25599999324939]]], "type": "Polygon"}, "id": "1", "properties": {"bespravni_id": "3", "datum_detekcije": "2024-03-10", "inspektor_id": "3", "napomena": "Nova ku\u0107a na poljoprivrednom zemlji\u0161tu", "parcela_id": "3", "procenjena_povrsina_m2": "210.0", "status_slucaja": "Detektovano"}, "type": "Feature"}, {"bbox": [19.874726024871034, 45.23509993028895, 19.880273976055143, 45.239900069105566], "geometry": {"coordinates": [[[19.874726091918657, 45.2359999932197], [19.874726024871034, 45.238999992568004], [19.874732157257725, 45.239088213759125], [19.874750499432498, 45.23917558548861], [19.87478087480885, 45.23926126633322], [19.874822990912534, 45.239344431149824], [19.87487644219625, 45.23942427902218], [19.874940713943488, 45.239500040974455], [19.875015187224005, 45.23957098737735], [19.875099144853273, 45.23963643497515], [19.875191778298518, 45.23969575346664], [19.875292195464926, 45.239748371575786], [19.875399429286997, 45.23979378255399], [19.875512447042276, 45.239831549061066], [19.875630160297813, 45.239861307377645], [19.87575143539351, 45.239882770908466], [19.875875104361274, 45.23989573294298], [19.875999976174842, 45.23990006864628], [19.87900002354911, 45.239900069105566], [19.879124895374467, 45.23989573344209], [19.87924856436547, 45.23988277144943], [19.87936983949627, 45.23986130796089], [19.879487552798782, 45.2398315496855], [19.879600570612496, 45.23979378321698], [19.879707804503706, 45.23974837227331], [19.879808221748867, 45.23969575419342], [19.8799008552811, 45.23963643572479], [19.87998481300404, 45.23957098814268], [19.880059286383197, 45.23950004174767], [19.880123558232263, 45.239424279795024], [19.880177009619203, 45.23934443191394], [19.880219125825786, 45.239261267080366], [19.8802495013031, 45.23917558621077], [19.880267843575464, 45.23908821444873], [19.880273976055143, 45.2389999932181], [19.88027390900753, 45.235999992569596], [19.880267772636103, 45.23591176934679], [19.880249426690597, 45.2358243959185], [19.880219047911154, 45.23573871375284], [19.880176928919255, 45.23565554802618], [19.8801234753976, 45.23557569967633], [19.88005920218139, 45.23549993768938], [19.879984728298634, 45.235428991694356], [19.879900771007392, 45.23536354493695], [19.87980813888736, 45.23530422770014], [19.879707724052395, 45.23525161123477], [19.87960049355894, 45.23520620225876], [19.879487480093132, 45.23516843807773], [19.87936977202625, 45.23513868237411], [19.879248502934228, 45.23511722170523], [19.87912484068208, 45.23510426274403], [19.878999976178427, 45.23509993028895], [19.876000023545508, 45.235099930748284], [19.875875159053646, 45.23510426324319], [19.875751496824744, 45.23511722224625], [19.87563022776783, 45.23513868295742], [19.875512519747925, 45.23516843870222], [19.87539950634056, 45.235206202921795], [19.875292275916244, 45.23525161193235], [19.87519186116003, 45.23530422842696], [19.875099229126995, 45.23536354568666], [19.875015271929428, 45.23542899245974], [19.874940798145307, 45.23549993846262], [19.87487652503092, 45.23557570044922], [19.874823071612493, 45.235655548790355], [19.874780952723487, 45.23573871450001], [19.87475057404501, 45.235824396640666], [19.874732228197093, 45.23591177003643], [19.874726091918657, 45.2359999932197]]], "type": "Polygon"}, "id": "2", "properties": {"bespravni_id": "4", "datum_detekcije": "2024-04-05", "inspektor_id": "4", "napomena": "Pomo\u0107ni objekat na trotoaru", "parcela_id": "4", "procenjena_povrsina_m2": "45.0", "status_slucaja": "Rusenje"}, "type": "Feature"}, {"bbox": [19.84472647825812, 45.21509993183603, 19.850273522693033, 45.21990006755914], "geometry": {"coordinates": [[[19.84472654523566, 45.21599999323345], [19.84472647825812, 45.218999992564115], [19.844732608462603, 45.21908821360282], [19.844750944110004, 45.219175585181304], [19.844781308676623, 45.219261265877826], [19.84482340979227, 45.21934443055072], [19.844876842053946, 45.21942427828508], [19.844941090928295, 45.21950004010643], [19.845015537705322, 45.21957098638673], [19.845099465455725, 45.21963643387143], [19.845192065934476, 45.21969575226045], [19.845292447364248, 45.219748370278694], [19.845399643023708, 45.21979378117846], [19.84551262055794, 45.21983154762033], [19.84563029192138, 45.21986130588552], [19.845751523857395, 45.21988276937931], [19.84587514881357, 45.219895731391446], [19.84599997618753, 45.219900067087245], [19.849000023529044, 45.21990006755914], [19.849124850915132, 45.21989573190424], [19.849248475895187, 45.219882769935076], [19.849369707867268, 45.21986130648473], [19.84948737927896, 45.219831548261816], [19.849600356873214, 45.21979378185955], [19.84970755260368, 45.21974837099524], [19.84980793411432, 45.219695753007024], [19.849900534682405, 45.2196364346415], [19.849984462528997, 45.21957098717288], [19.850058909407313, 45.21950004090067], [19.85012315838622, 45.219424279078936], [19.85017659075389, 45.2193444313356], [19.850218691975194, 45.21926126664526], [19.85024905664548, 45.21917558592305], [19.85026739239308, 45.2190882143111], [19.850273522693033, 45.21899999323182], [19.850273455715506, 45.21599999256572], [19.850267321527774, 45.21591176949494], [19.850248982110575, 45.21582439621718], [19.85021861414111, 45.21573871419913], [19.850176510136716, 45.21565554861574], [19.850123075635704, 45.215575700403456], [19.850058825290063, 45.21549993854704], [19.84998437790751, 45.215428992674234], [19.84990045049089, 45.2153635460296], [19.849807851332173, 45.21530422889501], [19.84970747222778, 45.21525161252032], [19.849600279890062, 45.215206203622586], [19.849487306637712, 45.215168439506655], [19.849369640454757, 45.21513868385436], [19.84924841451378, 45.2151172232225], [19.849124796264277, 45.21510426428364], [19.848999976191106, 45.21509993183603], [19.846000023525438, 45.215099932307986], [19.845875203464402, 45.2151042647965], [19.845751585238787, 45.21511722377835], [19.84563035933388, 45.21513868445365], [19.84551269319918, 45.21516844014824], [19.845399720006853, 45.21520620430376], [19.845292527740146, 45.21525161323694], [19.845192148716627, 45.215304229641646], [19.845099549647244, 45.215363546799736], [19.845015622326816, 45.21542899346046], [19.844941175045555, 45.21549993934132], [19.84487692480447, 45.21557570119737], [19.844823490409453, 45.21565554940069], [19.84478138651071, 45.2157387149666], [19.844751018644914, 45.21582439695894], [19.844732679327915, 45.21591177020327], [19.84472654523566, 45.21599999323345]]], "type": "Polygon"}, "id": "3", "properties": {"bespravni_id": "5", "datum_detekcije": "2024-05-12", "inspektor_id": "5", "napomena": "Pro\u0161irenje poslovnog prostora", "parcela_id": "5", "procenjena_povrsina_m2": "155.0", "status_slucaja": "U proceduri"}, "type": "Feature"}, {"bbox": [19.80472671055075, 45.205099936681165, 19.810273290433532, 45.209900062714865], "geometry": {"coordinates": [[[19.80472677749358, 45.205999993247545], [19.80472671055075, 45.208999992554936], [19.804732839636177, 45.20908821311742], [19.804751171938324, 45.20917558422436], [19.804781530965688, 45.20926126445855], [19.804823624401397, 45.20934442868273], [19.8048770469164, 45.209424275986386], [19.8049412840712, 45.20950003739917], [19.80501571726866, 45.20957098329693], [19.80509962971026, 45.20963643042889], [19.805192213298405, 45.20969574849828], [19.80529257641845, 45.209748366233114], [19.805399752525393, 45.20979377688842], [19.80551270945265, 45.209831543127066], [19.805630359353117, 45.20986130123229], [19.80575156917687, 45.20988276461083], [19.805875171584464, 45.20989572655355], [19.805999976190687, 45.20990006222642], [19.809000023516045, 45.209900062714865], [19.80912482813483, 45.20989572708433], [19.809248430567152, 45.20988276518608], [19.809369640428233, 45.20986130185248], [19.809487290378634, 45.209831543791026], [19.809600247368003, 45.20979377759334], [19.80970742354843, 45.20974836697475], [19.809807786752156, 45.20969574927096], [19.809900370432747, 45.209636431225874], [19.809984282973883, 45.20957098411058], [19.810058716276156, 45.20950003822115], [19.810122953539146, 45.20942427680799], [19.810176376163824, 45.20934442949505], [19.810218469708857, 45.20926126525278], [19.810248828843488, 45.209175584992], [19.810267161249314, 45.20908821385043], [19.810273290433532, 45.20899999324593], [19.810273223490704, 45.20599999255654], [19.810267090420698, 45.205911769960885], [19.810248754347036, 45.20582439715376], [19.81021839191471, 45.20573871559733], [19.810176295587695, 45.20565555046207], [19.810122870830362, 45.20557570268012], [19.81005863220084, 45.205499941232105], [19.809984198394023, 45.20542899574185], [19.809900286281998, 45.205363549450205], [19.809807704009366, 45.205304232635655], [19.809707343209926, 45.20525161654496], [19.80960017041975, 45.205206207892424], [19.8094872177693, 45.20516844398056], [19.8093695730442, 45.20513868848916], [19.8092483692104, 45.20511722797351], [19.809124773504504, 45.205104269104986], [19.80899997619427, 45.205099936681165], [19.80600002351245, 45.20509993716968], [19.80587522621478, 45.20510426963582], [19.80575163053361, 45.20511722854881], [19.805630426737146, 45.20513868910944], [19.80551278206198, 45.205168444644585], [19.80539982947365, 45.20520620859743], [19.805292656756958, 45.20525161728664], [19.805192296041206, 45.2053042334084], [19.80509971386102, 45.20536355024727], [19.805015801848533, 45.205428996555554], [19.804941368146526, 45.20549994205413], [19.804877129625197, 45.20557570350176], [19.804823704977537, 45.20565555127442], [19.804781608759843, 45.205738716391586], [19.804751246434783, 45.20582439792142], [19.804732910464804, 45.20591177069394], [19.80472677749358, 45.205999993247545]]], "type": "Polygon"}, "id": "4", "properties": {"bespravni_id": "1", "datum_detekcije": "2024-01-15", "inspektor_id": "1", "napomena": "Dogradnja bez dozvole", "parcela_id": "1", "procenjena_povrsina_m2": "120.5", "status_slucaja": "U proceduri"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+    geo_json_ef2fd4a854a513daa6191d6422332f11.bindTooltip(
+    function(layer){
+    let div = L.DomUtil.create('div');
+    
+    let handleObject = feature => {
+        if (feature === null) {
+            return '';
+        } else if (typeof(feature)=='object') {
+            return JSON.stringify(feature);
+        } else {
+            return feature;
+        }
+    }
+    let fields = ["bespravni_id", "status_slucaja", "procenjena_povrsina_m2", "datum_detekcije", "napomena", "parcela_id"];
+    let aliases = ["bespravni_id", "status_slucaja", "procenjena_povrsina_m2", "datum_detekcije", "napomena", "parcela_id"];
+    let table = '<table>' +
+        String(
+        fields.map(
+        (v,i)=>
+        `<tr>
+            <th>${aliases[i]}</th>
+            
+            <td>${handleObject(layer.feature.properties[v])}</td>
+        </tr>`).join(''))
+    +'</table>';
+    div.innerHTML=table;
+    
+    return div
+    }
+    ,{
+  "sticky": true,
+  "className": "foliumtooltip",
+});
+                     
+    
+        function geo_json_cf7b9dbdd96fd838230690f09f28cfdf_styler(feature) {
+            switch(feature.id) {
+                default:
+                    return {"color": "black", "fillColor": "black", "fillOpacity": 0.35, "weight": 2};
+            }
+        }
+
+        function geo_json_cf7b9dbdd96fd838230690f09f28cfdf_onEachFeature(feature, layer) {
+
+            layer.on({
+            });
+        };
+        var geo_json_cf7b9dbdd96fd838230690f09f28cfdf = L.geoJson(null, {
+                onEachFeature: geo_json_cf7b9dbdd96fd838230690f09f28cfdf_onEachFeature,
+            
+                style: geo_json_cf7b9dbdd96fd838230690f09f28cfdf_styler,
+            ...{
+}
+        });
+
+        function geo_json_cf7b9dbdd96fd838230690f09f28cfdf_add (data) {
+            geo_json_cf7b9dbdd96fd838230690f09f28cfdf
+                .addData(data);
+        }
+            geo_json_cf7b9dbdd96fd838230690f09f28cfdf_add({"bbox": [19.755861362622706, 45.20599706708522, 19.879002243860093, 45.25910169649848], "features": [{"bbox": [19.815756752267976, 45.206080924209814, 19.81889667260329, 45.20905055736862], "geometry": {"coordinates": [[[19.815991262090385, 45.209021099388124], [19.815756752267976, 45.20889623650943], [19.8158151762786, 45.206080924209814], [19.81889667260329, 45.20611283696858], [19.818835866774922, 45.20905055736862], [19.815991262090385, 45.209021099388124]]], "type": "Polygon"}, "id": "2", "properties": {"bespravni_id": "2", "broj_parcele": "1002", "confidence": "0.85", "index_right": "0", "inspektor_id": "1", "izvor_snimka": "simulirani_raster_na_osnovu_PostGIS_podataka", "katastarska_opstina": "Novi Sad I", "model": "KMeans segmentacija piksela", "napomena": "Automatski detektovan building footprint na raster snimku", "parcela_id": "2", "procenjena_povrsina_m2": "78884.01", "status_slucaja_left": "Detektovano ML", "status_slucaja_right": "U proceduri"}, "type": "Feature"}, {"bbox": [19.805795569728698, 45.20599706708522, 19.808941087694905, 45.20906954908453], "geometry": {"coordinates": [[[19.805795569728698, 45.2090373643629], [19.805857046741586, 45.20609965784001], [19.807516307908173, 45.20611699663832], [19.807755902612545, 45.20599706708522], [19.808941087694905, 45.2060094346741], [19.808877214500686, 45.20906954908453], [19.805795569728698, 45.2090373643629]]], "type": "Polygon"}, "id": "3", "properties": {"bespravni_id": "1", "broj_parcele": "1001", "confidence": "0.85", "index_right": "4", "inspektor_id": "1", "izvor_snimka": "simulirani_raster_na_osnovu_PostGIS_podataka", "katastarska_opstina": "Novi Sad I", "model": "KMeans segmentacija piksela", "napomena": "Automatski detektovan building footprint na raster snimku", "parcela_id": "1", "procenjena_povrsina_m2": "80403.45", "status_slucaja_left": "Detektovano ML", "status_slucaja_right": "U proceduri"}, "type": "Feature"}, {"bbox": [19.845901282282952, 45.21606160588412, 19.84899832885106, 45.219030457374124], "geometry": {"coordinates": [[[19.845901282282952, 45.21899934947536], [19.84596071558657, 45.21606160588412], [19.848805701629143, 45.216090320895034], [19.848763707708695, 45.21817122484049], [19.84899832885106, 45.21829602083218], [19.848983509330523, 45.219030457374124], [19.845901282282952, 45.21899934947536]]], "type": "Polygon"}, "id": "5", "properties": {"bespravni_id": "5", "broj_parcele": "120", "confidence": "0.85", "index_right": "3", "inspektor_id": "1", "izvor_snimka": "simulirani_raster_na_osnovu_PostGIS_podataka", "katastarska_opstina": "Sremska Kamenica", "model": "KMeans segmentacija piksela", "napomena": "Automatski detektovan building footprint na raster snimku", "parcela_id": "5", "procenjena_povrsina_m2": "74578.94", "status_slucaja_left": "Detektovano ML", "status_slucaja_right": "U proceduri"}, "type": "Feature"}, {"bbox": [19.875861130889785, 45.23607178630864, 19.879002243860093, 45.23903985991264], "geometry": {"coordinates": [[[19.875861130889785, 45.23900955015791], [19.875919061915248, 45.23607178630864], [19.879002243860093, 45.236102092976104], [19.878944471649344, 45.23903985991264], [19.875861130889785, 45.23900955015791]]], "type": "Polygon"}, "id": "7", "properties": {"bespravni_id": "4", "broj_parcele": "501", "confidence": "0.85", "index_right": "2", "inspektor_id": "1", "izvor_snimka": "simulirani_raster_na_osnovu_PostGIS_podataka", "katastarska_opstina": "Petrovaradin", "model": "KMeans segmentacija piksela", "napomena": "Automatski detektovan building footprint na raster snimku", "parcela_id": "4", "procenjena_povrsina_m2": "79010.63", "status_slucaja_left": "Detektovano ML", "status_slucaja_right": "Rusenje"}, "type": "Feature"}, {"bbox": [19.755861362622706, 45.25600810852453, 19.758998989361807, 45.25910169649848], "geometry": {"coordinates": [[[19.755861362622706, 45.25906813575532], [19.75592819466695, 45.25600810852453], [19.758775081058936, 45.25603908734131], [19.758764413104757, 45.25652869233999], [19.758998989361807, 45.25665367200319], [19.75894565533265, 45.25910169649848], [19.755861362622706, 45.25906813575532]]], "type": "Polygon"}, "id": "9", "properties": {"bespravni_id": "3", "broj_parcele": "2045", "confidence": "0.85", "index_right": "1", "inspektor_id": "1", "izvor_snimka": "simulirani_raster_na_osnovu_PostGIS_podataka", "katastarska_opstina": "Veternik", "model": "KMeans segmentacija piksela", "napomena": "Automatski detektovan building footprint na raster snimku", "parcela_id": "3", "procenjena_povrsina_m2": "81163.16", "status_slucaja_left": "Detektovano ML", "status_slucaja_right": "Detektovano"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+    geo_json_cf7b9dbdd96fd838230690f09f28cfdf.bindTooltip(
+    function(layer){
+    let div = L.DomUtil.create('div');
+    
+    let handleObject = feature => {
+        if (feature === null) {
+            return '';
+        } else if (typeof(feature)=='object') {
+            return JSON.stringify(feature);
+        } else {
+            return feature;
+        }
+    }
+    let fields = ["procenjena_povrsina_m2", "confidence", "status_slucaja_left", "izvor_snimka", "model", "napomena"];
+    let aliases = ["procenjena_povrsina_m2", "confidence", "status_slucaja_left", "izvor_snimka", "model", "napomena"];
+    let table = '<table>' +
+        String(
+        fields.map(
+        (v,i)=>
+        `<tr>
+            <th>${aliases[i]}</th>
+            
+            <td>${handleObject(layer.feature.properties[v])}</td>
+        </tr>`).join(''))
+    +'</table>';
+    div.innerHTML=table;
+    
+    return div
+    }
+    ,{
+  "sticky": true,
+  "className": "foliumtooltip",
+});
+                     
+    
+            var layer_control_8013ce3844d236918d3780db78cda54e_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_a6b1b86f89a011e96980c5d3e64a1a30,
+                    "Raster podloga - svetla" : tile_layer_e5f5eb86d7aad96af28e2df162ab5d16,
+                    "Raster podloga - tamna" : tile_layer_d77f88e28a665a8fdaedb11df0d0ae03,
+                },
+                overlays :  {
+                    "Parcele iz baze" : geo_json_a6df746382e0b7891e69174c7ad6bc92,
+                    "Legalni objekti iz baze" : geo_json_f73fba1d9f8ab8fd5f02b71deb7b2768,
+                    "Bespravni objekti iz baze" : geo_json_cefb1544db381e4995b7b633ae7726d2,
+                    "ML detektovani objekti" : geo_json_aa6e9bdb9a9f24010c9a580bdd614bf3,
+                    "Buffer 25m oko ML objekata" : geo_json_66b692c581d5f1119573329960517d5f,
+                    "Buffer 100m oko bespravnih objekata" : geo_json_ef2fd4a854a513daa6191d6422332f11,
+                    "ML objekti blizu ranije evidentiranih bespravnih" : geo_json_cf7b9dbdd96fd838230690f09f28cfdf,
+                },
+            };
+            let layer_control_8013ce3844d236918d3780db78cda54e = L.control.layers(
+                layer_control_8013ce3844d236918d3780db78cda54e_layers.base_layers,
+                layer_control_8013ce3844d236918d3780db78cda54e_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_f9b7132cc609128e8e686d292476f277);
+
+        
+</script>
+</html>
