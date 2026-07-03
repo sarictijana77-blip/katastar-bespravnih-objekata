@@ -1,0 +1,14 @@
+psycopg2
+pandas
+geopandas
+shapely
+folium
+osmnx
+sqlalchemy
+geoalchemy2
+matplotlib
+contextily
+rasterio
+opencv-python
+ultralytics
+scikit-learn
