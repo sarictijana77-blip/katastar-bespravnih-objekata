@@ -138,13 +138,11 @@ def ucitaj_aoi():
         raise ValueError("AOI GeoJSON je prazan.")
 
     # Ako GeoJSON nema CRS, pokušavamo da zaključimo da li je WGS84 ili EPSG:32634.
-    if aoi.crs is None:
-        minx, miny, maxx, maxy = aoi.total_bounds
-
-        if -180 <= minx <= 180 and -90 <= miny <= 90:
-            aoi = aoi.set_crs(CRS_WGS84)
-        else:
-            aoi = aoi.set_crs(CRS_METERS)
+     # VAŽNO: aoi.geojson ima pogrešno upisan CRS tag (tvrdi da je EPSG:4326),
+    # ali su stvarne koordinate u metrima (UTM, EPSG:32634). Ovo smo potvrdile
+    # ranijom proverom (provera_geojson.py). Zato PRINUDNO postavljamo ispravan
+    # CRS, ignorišući pogrešan tag iz samog fajla.
+    aoi = aoi.set_crs(CRS_METERS, allow_override=True)
 
     print(f"Učitan AOI: {AOI_PATH}")
     print(f"AOI CRS: {aoi.crs}")
@@ -507,6 +505,57 @@ def dodeli_parcele(detekcije, parcele, engine):
 
     return detekcije
 
+# ============================================================
+# KLASIFIKACIJA: PODUDARA SE SA LEGALNIM ILI JE KANDIDAT ZA BESPRAVNI
+# ============================================================
+
+def oznaci_bespravne(detekcije, legalni):
+    """
+    Poredi ML detekcije sa legalnim objektima iz baze.
+    Ako se detekcija preklapa sa legalnim objektom -> ima dozvolu.
+    Ako se NE preklapa ni sa jednim -> kandidat za bespravni objekat.
+    """
+    detekcije = detekcije.copy()
+    detekcije["ima_dozvolu"] = False
+    detekcije["preklapa_objekat_id"] = None
+    detekcije["geometry"] = detekcije.geometry.make_valid()
+    detekcije = detekcije[~detekcije.geometry.is_empty].copy() 
+
+    if not legalni.empty:
+        # blagi buffer (1m) da pokrijemo sitne razlike u konturama/georeferenciranju
+        legalni_m = legalni.to_crs(CRS_METERS)
+
+        # Čišćenje: popravljamo neispravne geometrije i izbacujemo prazne
+        # pre bafera, isti problem kao ranije sa ML detekcijama.
+        legalni_m["geometry"] = legalni_m.geometry.make_valid()
+        legalni_m = legalni_m[~legalni_m.geometry.is_empty].copy()
+
+        legalni_m["geometry"] = legalni_m.geometry.buffer(1)
+        legalni_buff = legalni_m.to_crs(CRS_WGS84)
+
+        spoj = gpd.sjoin(
+            detekcije,
+            legalni_buff[["objekat_id", "geometry"]],
+            how="left",
+            predicate="intersects"
+        )
+        spoj = spoj[~spoj.index.duplicated(keep="first")]
+
+        for idx, red in spoj.iterrows():
+            if pd.notna(red.get("objekat_id")):
+                detekcije.loc[idx, "ima_dozvolu"] = True
+                detekcije.loc[idx, "preklapa_objekat_id"] = int(red["objekat_id"])
+
+    # Konačan status na osnovu preklapanja
+    detekcije["status_slucaja"] = detekcije["ima_dozvolu"].apply(
+        lambda ima: "Podudara se sa legalnim objektom" if ima else "Kandidat - bespravni objekat"
+    )
+
+    broj_bespravnih = (~detekcije["ima_dozvolu"]).sum()
+    broj_legalnih = detekcije["ima_dozvolu"].sum()
+    print(f"Rezultat klasifikacije: {broj_bespravnih} kandidata za bespravne, {broj_legalnih} podudara se sa legalnim objektima.")
+
+    return detekcije
 
 def upisi_u_postgis(detekcije):
     conn = get_db_connection()
@@ -647,6 +696,12 @@ def prostorne_analize(detekcije, parcele, legalni, bespravni, aoi):
     # 4. Buffer oko ML detekcija
     detekcije_m = detekcije.to_crs(CRS_METERS)
     buffer_ml = detekcije_m.copy()
+
+    # Čišćenje: neke konture mogu dati neispravnu geometriju posle aproksimacije,
+    # zato ih prvo popravljamo (make_valid) i izbacujemo prazne.
+    buffer_ml["geometry"] = buffer_ml.geometry.make_valid()
+    buffer_ml = buffer_ml[~buffer_ml.geometry.is_empty].copy()
+
     buffer_ml["geometry"] = buffer_ml.geometry.buffer(25)
     rezultati["buffer_ml_25m"] = buffer_ml.to_crs(CRS_WGS84)
 
@@ -777,7 +832,14 @@ def main():
         print("Nema detekcija. Probaj da približiš snimak ili ćemo podesiti parametre segmentacije.")
         return
 
+    
+
     detekcije = dodeli_parcele(detekcije, parcele, engine)
+    detekcije = oznaci_bespravne(detekcije, legalni)  
+
+    # Čišćenje geometrija pre daljih prostornih operacija
+    detekcije["geometry"] = detekcije.geometry.make_valid()
+    detekcije = detekcije[~detekcije.geometry.is_empty].copy()
 
     sacuvaj_rezultate(detekcije)
     upisi_u_postgis(detekcije)
