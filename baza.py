@@ -189,11 +189,14 @@ def ucitaj_tabelu_u_df(ime_tabele):
     return df
 
 # ============================================================
-# 5. CRUD OPERACIJE (Create, Read, Update, Delete za sve tabele)
+# 5. CRUD OPERACIJE (Create, Read, Update, Delete za SVE tabele)
 # ============================================================
 
-# --- VLASNICI ---
+# ---------------------------------------------------------------
+# 5a. CRUD - VLASNICI (PUN CRUD)
+# ---------------------------------------------------------------
 def crud_dodaj_vlasnika(ime, prezime, jmbg, telefon=None, email=None, adresa=None):
+    """CREATE - Dodaje novog vlasnika"""
     conn = get_db_connection()
     cur = conn.cursor()
     try:
@@ -211,6 +214,7 @@ def crud_dodaj_vlasnika(ime, prezime, jmbg, telefon=None, email=None, adresa=Non
         conn.close()
 
 def crud_prikazi_vlasnike():
+    """READ - Prikazuje sve vlasnike"""
     conn = get_db_connection()
     if not conn: return
     df = pd.read_sql_query("SELECT * FROM vlasnici;", conn)
@@ -220,6 +224,7 @@ def crud_prikazi_vlasnike():
     return df
 
 def crud_azuriraj_vlasnika(vlasnik_id, ime=None, prezime=None, telefon=None, email=None, adresa=None):
+    """UPDATE - Ažurira podatke vlasnika"""
     conn = get_db_connection()
     cur = conn.cursor()
     try:
@@ -244,6 +249,7 @@ def crud_azuriraj_vlasnika(vlasnik_id, ime=None, prezime=None, telefon=None, ema
         conn.close()
 
 def crud_obrisi_vlasnika(vlasnik_id):
+    """DELETE - Briše vlasnika po ID"""
     conn = get_db_connection()
     cur = conn.cursor()
     try:
@@ -257,15 +263,18 @@ def crud_obrisi_vlasnika(vlasnik_id):
         cur.close()
         conn.close()
 
-# --- PARCELE ---
-def crud_dodaj_parcelu(broj_parcele, katastarska_opstina, povrsina_m2, vlasnik_id, geometrija_wkt):
+# ---------------------------------------------------------------
+# 5b. CRUD - PARCELE (C + R + U + D)
+# ---------------------------------------------------------------
+def crud_dodaj_parcelu(broj_parcele, katastarska_opstina, povrsina_m2, vlasnik_id, geometrija_wkt, namjena='neodređeno'):
+    """CREATE - Dodaje novu parcelu sa geometrijom"""
     conn = get_db_connection()
     cur = conn.cursor()
     try:
         cur.execute(
-            "INSERT INTO parcele (broj_parcele, katastarska_opstina, povrsina_m2, vlasnik_id, geometrija) "
-            "VALUES (%s, %s, %s, %s, ST_GeomFromText(%s, 4326));",
-            (broj_parcele, katastarska_opstina, povrsina_m2, vlasnik_id, geometrija_wkt)
+            "INSERT INTO parcele (broj_parcele, katastarska_opstina, povrsina_m2, namjena, vlasnik_id, geometrija) "
+            "VALUES (%s, %s, %s, %s, %s, ST_GeomFromText(%s, 4326));",
+            (broj_parcele, katastarska_opstina, povrsina_m2, namjena, vlasnik_id, geometrija_wkt)
         )
         conn.commit()
         print(f"Parčela {broj_parcele} uspešno dodata.")
@@ -276,8 +285,205 @@ def crud_dodaj_parcelu(broj_parcele, katastarska_opstina, povrsina_m2, vlasnik_i
         cur.close()
         conn.close()
 
-# --- BESPRAVNI OBJEKTI ---
+def crud_prikazi_parcele():
+    """READ - Prikazuje sve parcele"""
+    conn = get_db_connection()
+    if not conn: return
+    df = pd.read_sql_query("SELECT parcel_id, broj_parcele, katastarska_opstina, povrsina_m2, namjena, vlasnik_id, ST_AsText(geometrija) AS wkt_geometrija FROM parcele;", conn)
+    conn.close()
+    print("\n--- SVE PARCELE ---")
+    print(df)
+    return df
+
+def crud_azuriraj_parcelu(parcela_id, broj_parcele=None, katastarska_opstina=None, povrsina_m2=None, namjena=None, vlasnik_id=None):
+    """UPDATE - Ažurira podatke parcele"""
+    conn = get_db_connection()
+    cur = conn.cursor()
+    try:
+        polja = []
+        vrednosti = []
+        if broj_parcele: polja.append("broj_parcele = %s"); vrednosti.append(broj_parcele)
+        if katastarska_opstina: polja.append("katastarska_opstina = %s"); vrednosti.append(katastarska_opstina)
+        if povrsina_m2: polja.append("povrsina_m2 = %s"); vrednosti.append(povrsina_m2)
+        if namjena: polja.append("namjena = %s"); vrednosti.append(namjena)
+        if vlasnik_id: polja.append("vlasnik_id = %s"); vrednosti.append(vlasnik_id)
+        vrednosti.append(parcela_id)
+        
+        sql = f"UPDATE parcele SET {', '.join(polja)} WHERE parcela_id = %s;"
+        cur.execute(sql, vrednosti)
+        conn.commit()
+        print(f"Parčela ID {parcela_id} uspešno ažurirana.")
+    except Exception as e:
+        conn.rollback()
+        print(f"Greška pri ažuriranju parcele: {e}")
+    finally:
+        cur.close()
+        conn.close()
+
+def crud_obrisi_parcelu(parcela_id):
+    """DELETE - Briše parcelu po ID"""
+    conn = get_db_connection()
+    cur = conn.cursor()
+    try:
+        cur.execute("DELETE FROM parcele WHERE parcela_id = %s;", (parcela_id,))
+        conn.commit()
+        print(f"Parčela ID {parcela_id} uspešno obrisana.")
+    except Exception as e:
+        conn.rollback()
+        print(f"Greška pri brisanju parcele: {e}")
+    finally:
+        cur.close()
+        conn.close()
+
+# ---------------------------------------------------------------
+# 5c. CRUD - LEGALNI OBJEKTI (C + R + U + D)
+# ---------------------------------------------------------------
+def crud_dodaj_legalni_objekat(broj_dozvole, spratnost, godina_izgradnje, namjena_objekta, parcela_id, geometrija_wkt):
+    """CREATE - Dodaje novi legalni objekat"""
+    conn = get_db_connection()
+    cur = conn.cursor()
+    try:
+        cur.execute(
+            "INSERT INTO legalni_objekti (broj_dozvole, spratnost, godina_izgradnje, namjena_objekta, parcela_id, geometrija) "
+            "VALUES (%s, %s, %s, %s, %s, ST_GeomFromText(%s, 4326));",
+            (broj_dozvole, spratnost, godina_izgradnje, namjena_objekta, parcela_id, geometrija_wkt)
+        )
+        conn.commit()
+        print(f"Legalni objekat {broj_dozvole} uspešno dodat.")
+    except Exception as e:
+        conn.rollback()
+        print(f"Greška pri dodavanju legalnog objekta: {e}")
+    finally:
+        cur.close()
+        conn.close()
+
+def crud_prikazi_legalne_objekte():
+    """READ - Prikazuje sve legalne objekte"""
+    conn = get_db_connection()
+    if not conn: return
+    df = pd.read_sql_query("SELECT objekat_id, broj_dozvole, spratnost, godina_izgradnje, namjena_objekta, parcela_id, ST_AsText(geometrija) AS wkt_geometrija FROM legalni_objekti;", conn)
+    conn.close()
+    print("\n--- LEGALNI OBJEKTI ---")
+    print(df)
+    return df
+
+def crud_azuriraj_legalni_objekat(objekat_id, spratnost=None, godina_izgradnje=None, namjena_objekta=None, parcela_id=None):
+    """UPDATE - Ažurira podatke legalnog objekta"""
+    conn = get_db_connection()
+    cur = conn.cursor()
+    try:
+        polja = []
+        vrednosti = []
+        if spratnost: polja.append("spratnost = %s"); vrednosti.append(spratnost)
+        if godina_izgradnje: polja.append("godina_izgradnje = %s"); vrednosti.append(godina_izgradnje)
+        if namjena_objekta: polja.append("namjena_objekta = %s"); vrednosti.append(namjena_objekta)
+        if parcela_id: polja.append("parcela_id = %s"); vrednosti.append(parcela_id)
+        vrednosti.append(objekat_id)
+        
+        sql = f"UPDATE legalni_objekti SET {', '.join(polja)} WHERE objekat_id = %s;"
+        cur.execute(sql, vrednosti)
+        conn.commit()
+        print(f"Legalni objekat ID {objekat_id} uspešno ažuriran.")
+    except Exception as e:
+        conn.rollback()
+        print(f"Greška pri ažuriranju legalnog objekta: {e}")
+    finally:
+        cur.close()
+        conn.close()
+
+def crud_obrisi_legalni_objekat(objekat_id):
+    """DELETE - Briše legalni objekat po ID"""
+    conn = get_db_connection()
+    cur = conn.cursor()
+    try:
+        cur.execute("DELETE FROM legalni_objekti WHERE objekat_id = %s;", (objekat_id,))
+        conn.commit()
+        print(f"Legalni objekat ID {objekat_id} uspešno obrisan.")
+    except Exception as e:
+        conn.rollback()
+        print(f"Greška pri brisanju legalnog objekta: {e}")
+    finally:
+        cur.close()
+        conn.close()
+
+# ---------------------------------------------------------------
+# 5d. CRUD - INSPEKTORI (C + R + U + D)
+# ---------------------------------------------------------------
+def crud_dodaj_inspektora(ime, prezime, licenca, email=None, telefon=None, godina_zaposlenja=None, oblast_rada='opšta'):
+    """CREATE - Dodaje novog inspektora"""
+    conn = get_db_connection()
+    cur = conn.cursor()
+    try:
+        cur.execute(
+            "INSERT INTO inspektori (ime, prezime, licenca, email, telefon, godina_zaposlenja, oblast_rada) "
+            "VALUES (%s, %s, %s, %s, %s, %s, %s);",
+            (ime, prezime, licenca, email, telefon, godina_zaposlenja, oblast_rada)
+        )
+        conn.commit()
+        print(f"Inspektor {ime} {prezime} uspešno dodat.")
+    except Exception as e:
+        conn.rollback()
+        print(f"Greška pri dodavanju inspektora: {e}")
+    finally:
+        cur.close()
+        conn.close()
+
+def crud_prikazi_inspektore():
+    """READ - Prikazuje sve inspektore"""
+    conn = get_db_connection()
+    if not conn: return
+    df = pd.read_sql_query("SELECT * FROM inspektori;", conn)
+    conn.close()
+    print("\n--- SVI INSPEKTORI ---")
+    print(df)
+    return df
+
+def crud_azuriraj_inspektora(inspektor_id, ime=None, prezime=None, email=None, telefon=None, godina_zaposlenja=None, oblast_rada=None):
+    """UPDATE - Ažurira podatke inspektora"""
+    conn = get_db_connection()
+    cur = conn.cursor()
+    try:
+        polja = []
+        vrednosti = []
+        if ime: polja.append("ime = %s"); vrednosti.append(ime)
+        if prezime: polja.append("prezime = %s"); vrednosti.append(prezime)
+        if email: polja.append("email = %s"); vrednosti.append(email)
+        if telefon: polja.append("telefon = %s"); vrednosti.append(telefon)
+        if godina_zaposlenja: polja.append("godina_zaposlenja = %s"); vrednosti.append(godina_zaposlenja)
+        if oblast_rada: polja.append("oblast_rada = %s"); vrednosti.append(oblast_rada)
+        vrednosti.append(inspektor_id)
+        
+        sql = f"UPDATE inspektori SET {', '.join(polja)} WHERE inspektor_id = %s;"
+        cur.execute(sql, vrednosti)
+        conn.commit()
+        print(f"Inspektor ID {inspektor_id} uspešno ažuriran.")
+    except Exception as e:
+        conn.rollback()
+        print(f"Greška pri ažuriranju inspektora: {e}")
+    finally:
+        cur.close()
+        conn.close()
+
+def crud_obrisi_inspektora(inspektor_id):
+    """DELETE - Briše inspektora po ID"""
+    conn = get_db_connection()
+    cur = conn.cursor()
+    try:
+        cur.execute("DELETE FROM inspektori WHERE inspektor_id = %s;", (inspektor_id,))
+        conn.commit()
+        print(f"Inspektor sa ID {inspektor_id} uspešno obrisan.")
+    except Exception as e:
+        conn.rollback()
+        print(f"Greška pri brisanju inspektora: {e}")
+    finally:
+        cur.close()
+        conn.close()
+
+# ---------------------------------------------------------------
+# 5e. CRUD - BESPRAVNI OBJEKTI (C + R + U + D)
+# ---------------------------------------------------------------
 def crud_dodaj_bespravni(status, povrsina, parcela_id, inspektor_id, geometrija_wkt, napomena=None):
+    """CREATE - Dodaje bespravni objekat"""
     conn = get_db_connection()
     cur = conn.cursor()
     try:
@@ -295,7 +501,22 @@ def crud_dodaj_bespravni(status, povrsina, parcela_id, inspektor_id, geometrija_
         cur.close()
         conn.close()
 
+def crud_prikazi_bespravne():
+    """READ - Prikazuje sve bespravne objekte"""
+    conn = get_db_connection()
+    if not conn: return
+    df = pd.read_sql_query(
+        "SELECT bespravni_id, status_slucaja, procenjena_povrsina_m2, datum_detekcije, "
+        "napomena, parcela_id, inspektor_id, ST_AsText(geometrija) AS wkt_geometrija "
+        "FROM bespravni_objekti;", conn
+    )
+    conn.close()
+    print("\n--- BESPRAVNI OBJEKTI ---")
+    print(df)
+    return df
+
 def crud_azuriraj_status_objekta(bespravni_id, novi_status):
+    """UPDATE - Menja status bespravnog objekta"""
     conn = get_db_connection()
     cur = conn.cursor()
     try:
@@ -310,6 +531,7 @@ def crud_azuriraj_status_objekta(bespravni_id, novi_status):
         conn.close()
 
 def crud_obrisi_bespravni(bespravni_id):
+    """DELETE - Briše bespravni objekat"""
     conn = get_db_connection()
     cur = conn.cursor()
     try:
@@ -319,21 +541,6 @@ def crud_obrisi_bespravni(bespravni_id):
     except Exception as e:
         conn.rollback()
         print(f"Greška pri brisanju bespravnog objekta: {e}")
-    finally:
-        cur.close()
-        conn.close()
-
-# --- INSPEKTORI ---
-def crud_obrisi_inspektora(inspektor_id):
-    conn = get_db_connection()
-    cur = conn.cursor()
-    try:
-        cur.execute("DELETE FROM inspektori WHERE inspektor_id = %s;", (inspektor_id,))
-        conn.commit()
-        print(f"Inspektor sa ID {inspektor_id} uspešno obrisan.")
-    except Exception as e:
-        conn.rollback()
-        print(f"Greška pri brisanju inspektora: {e}")
     finally:
         cur.close()
         conn.close()
@@ -453,23 +660,58 @@ if __name__ == "__main__":
     
     # 4. Testiranje CRUD operacija
     print("\n" + "=" * 60)
-    print("CRUD OPERACIJE - PRIMJERI")
+    print("CRUD OPERACIJE - PRIMJERI ZA SVE TABELE")
     print("=" * 60)
     
-    # CREATE
-    print("\n--- Dodavanje novog vlasnika (CREATE) ---")
+    # --- VLASNICI (test CREATE, READ, UPDATE, DELETE) ---
+    print("\n--- VLASNICI: CREATE ---")
     crud_dodaj_vlasnika('Petar', 'Petrović', '1111999800011', '060777777', 'petar@email.com', 'Novi Sad, Futoška 30')
     
-    # READ
+    print("\n--- VLASNICI: READ ---")
     crud_prikazi_vlasnike()
     
-    # UPDATE
-    print("\n--- Ažuriranje statusa bespravnog objekta (UPDATE) ---")
-    crud_azuriraj_status_objekta(1, 'U proceduri')
+    print("\n--- VLASNICI: UPDATE ---")
+    crud_azuriraj_vlasnika(1, telefon='065111222')
     
-    # DELETE (komentarisano da se slučajno ne obrišu podaci)
-    # print("\n--- Brisanje inspektora (DELETE) ---")
-    # crud_obrisi_inspektora(5)
+    # --- PARCELE (test CREATE, READ, UPDATE) ---
+    print("\n--- PARCELE: CREATE ---")
+    crud_dodaj_parcelu('3001', 'Novi Sad I', 750.00, 1, 'POLYGON((19.83 45.21, 19.84 45.21, 19.84 45.22, 19.83 45.22, 19.83 45.21))', 'građevinsko')
+    
+    print("\n--- PARCELE: READ ---")
+    crud_prikazi_parcele()
+    
+    print("\n--- PARCELE: UPDATE ---")
+    crud_azuriraj_parcelu(1, namjena='poljoprivredno')
+    
+    # --- LEGALNI OBJEKTI (test CREATE, READ, UPDATE) ---
+    print("\n--- LEGALNI OBJEKTI: CREATE ---")
+    crud_dodaj_legalni_objekat('ROP-NS-55-2025', 'P+2', 2025, 'poslovni', 1, 'POLYGON((19.802 45.202, 19.806 45.202, 19.806 45.206, 19.802 45.206, 19.802 45.202))')
+    
+    print("\n--- LEGALNI OBJEKTI: READ ---")
+    crud_prikazi_legalne_objekte()
+    
+    print("\n--- LEGALNI OBJEKTI: UPDATE ---")
+    crud_azuriraj_legalni_objekat(1, spratnost='P+3')
+    
+    # --- INSPEKTORI (test CREATE, READ, UPDATE) ---
+    print("\n--- INSPEKTORI: CREATE ---")
+    crud_dodaj_inspektora('Sara', 'Kovač', 'LIC-106', 'sara.kovac@inspekcija.rs', '061111333', 2023, 'građevinska')
+    
+    print("\n--- INSPEKTORI: READ ---")
+    crud_prikazi_inspektore()
+    
+    print("\n--- INSPEKTORI: UPDATE ---")
+    crud_azuriraj_inspektora(1, oblast_rada='građevinska - viši inspektor')
+    
+    # --- BESPRAVNI OBJEKTI (test CREATE, READ, UPDATE) ---
+    print("\n--- BESPRAVNI OBJEKTI: CREATE ---")
+    crud_dodaj_bespravni('Detektovano', 95.00, 1, 1, 'POLYGON((19.807 45.207, 19.81 45.207, 19.81 45.21, 19.807 45.21, 19.807 45.207))', 'Novi bespravni objekat')
+    
+    print("\n--- BESPRAVNI OBJEKTI: READ ---")
+    crud_prikazi_bespravne()
+    
+    print("\n--- BESPRAVNI OBJEKTI: UPDATE ---")
+    crud_azuriraj_status_objekta(1, 'U proceduri')
     
     # 5. Izvršavanje JOIN upita
     print("\n" + "=" * 60)
