@@ -1,5 +1,6 @@
 from pathlib import Path
 
+import matplotlib.pyplot as plt
 import cv2
 import folium
 import geopandas as gpd
@@ -557,6 +558,48 @@ def oznaci_bespravne(detekcije, legalni):
 
     return detekcije
 
+# ============================================================
+# GRAFIKONI (STATIČNI, ZA IZVEŠTAJ)
+# ============================================================
+
+def napravi_grafikone_ml(detekcije):
+    """
+    Pravi pie chart (legalno vs bespravno) i histogram povrsina,
+    cuva ih kao PNG u outputs/figures.
+    """
+    if detekcije.empty:
+        return
+
+    # 1) Pie chart - legalno vs bespravno
+    brojac = detekcije["status_slucaja"].value_counts()
+
+    plt.figure(figsize=(7, 7))
+    plt.pie(
+        brojac.values,
+        labels=brojac.index,
+        autopct="%1.1f%%",
+        colors=["indianred", "seagreen"],
+        startangle=90
+    )
+    plt.title("Odnos ML detekcija: legalno vs kandidat za bespravno")
+    plt.tight_layout()
+    putanja = OUTPUT_FIGURES / "ml_odnos_legalno_bespravno.png"
+    plt.savefig(putanja, dpi=150)
+    plt.close()
+    print(f"Grafikon sačuvan: {putanja}")
+
+    # 2) Histogram povrsina detektovanih objekata
+    plt.figure(figsize=(9, 5))
+    plt.hist(detekcije["procenjena_povrsina_m2"], bins=20, color="steelblue", edgecolor="white")
+    plt.title("Raspodela površina detektovanih objekata")
+    plt.xlabel("Procenjena površina (m²)")
+    plt.ylabel("Broj objekata")
+    plt.tight_layout()
+    putanja2 = OUTPUT_FIGURES / "ml_histogram_povrsina.png"
+    plt.savefig(putanja2, dpi=150)
+    plt.close()
+    print(f"Grafikon sačuvan: {putanja2}")
+
 def upisi_u_postgis(detekcije):
     conn = get_db_connection()
 
@@ -840,6 +883,8 @@ def main():
     # Čišćenje geometrija pre daljih prostornih operacija
     detekcije["geometry"] = detekcije.geometry.make_valid()
     detekcije = detekcije[~detekcije.geometry.is_empty].copy()
+
+    napravi_grafikone_ml(detekcije)   # ← DODATO
 
     sacuvaj_rezultate(detekcije)
     upisi_u_postgis(detekcije)
