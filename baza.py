@@ -289,7 +289,7 @@ def crud_prikazi_parcele():
     """READ - Prikazuje sve parcele"""
     conn = get_db_connection()
     if not conn: return
-    df = pd.read_sql_query("SELECT parcel_id, broj_parcele, katastarska_opstina, povrsina_m2, namjena, vlasnik_id, ST_AsText(geometrija) AS wkt_geometrija FROM parcele;", conn)
+    df = pd.read_sql_query("SELECT parcela_id, broj_parcele, katastarska_opstina, povrsina_m2, namjena, vlasnik_id, ST_AsText(geometrija) AS wkt_geometrija FROM parcele;", conn)
     conn.close()
     print("\n--- SVE PARCELE ---")
     print(df)
