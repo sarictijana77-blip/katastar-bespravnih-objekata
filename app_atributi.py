@@ -130,7 +130,8 @@ def detekcija_postoji(cur, detekcija_id):
 
 def promeni_status(detekcija_id, novi_status):
     if novi_status not in DOZVOLJENI_STATUSI:
-        print(f"Nepoznat status. Dozvoljeni statusi:")
+        print(f"Nepoznat status. Dozvoljeni statusi:") 
+        
         for s in DOZVOLJENI_STATUSI:
             print(f"  - {s}")
         return
