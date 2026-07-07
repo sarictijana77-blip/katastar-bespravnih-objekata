@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 
+import matplotlib.pyplot as plt
 import pandas as pd
 import geopandas as gpd
 import folium
@@ -197,6 +198,23 @@ def izracunaj_povrsinu(gdf, naziv_kolone="povrsina_m2"):
 
     return gdf
 
+def napravi_clip_zgrada(buildings, parcele):
+    """
+    PRAVI clip: iseca OSM zgrade na oblast definisanu granicama parcela
+    iz baze (Deo 1 tabela), sa baferom od 200m da uhvatimo i okolinu.
+    """
+    if buildings.empty or parcele.empty:
+        return gpd.GeoDataFrame(columns=["geometry"], geometry="geometry", crs=CRS_WGS84)
+
+    parcele_m = parcele.to_crs(CRS_METERS)
+    granica_m = parcele_m.geometry.union_all().buffer(200)
+    granica = gpd.GeoDataFrame(geometry=[granica_m], crs=CRS_METERS).to_crs(CRS_WGS84)
+
+    try:
+        return gpd.clip(buildings, granica)
+    except Exception as e:
+        print(f"Clip analiza nije uspela: {e}")
+        return gpd.GeoDataFrame(columns=["geometry"], geometry="geometry", crs=CRS_WGS84)
 
 def napravi_geo_analize(buildings, roads, water, landuse, parcele, bespravni):
     """
@@ -211,9 +229,8 @@ def napravi_geo_analize(buildings, roads, water, landuse, parcele, bespravni):
 
     rezultati = {}
 
-    # 1) CLIP - posto su podaci vec za Novi Sad, ovde cuvamo buildings kao clip rezultat
-    # U sledecoj verziji mozemo dodati posebnu granicu/opseg i pravi gpd.clip.
-    rezultati["clip_zgrade_novi_sad"] = buildings.copy()
+    # 1) CLIP - pravi isečak OSM zgrada po granici parcela iz baze
+    rezultati["clip_zgrade_oko_parcela"] = napravi_clip_zgrada(buildings, parcele)
 
     # 2) BUFFER - zona 50 m oko puteva
     if not roads.empty:
@@ -293,8 +310,78 @@ def napravi_geo_analize(buildings, roads, water, landuse, parcele, bespravni):
     else:
         rezultati["zgrade_u_bufferu_puteva"] = gpd.GeoDataFrame(columns=["geometry"], geometry="geometry", crs=CRS_WGS84)
 
+    # 7) SPAJANJE SHAPEFILE (OSM) PODATAKA SA TABELOM IZ DELA 1
+        # OSM zgrade spojene sa parcelama IZ BAZE - direktno spajanje shp+baza
+    if not buildings.empty and not parcele.empty:
+        try:
+            rezultati["osm_zgrade_spojene_sa_parcelama_baze"] = gpd.sjoin(
+                buildings,
+                parcele[["parcela_id", "broj_parcele", "katastarska_opstina", "namjena", "geometry"]],
+                how="inner",
+                predicate="intersects"
+            )
+        except Exception as e:
+            print(f"Spajanje OSM zgrada sa parcelama iz baze nije uspelo: {e}")
+            rezultati["osm_zgrade_spojene_sa_parcelama_baze"] = gpd.GeoDataFrame(columns=["geometry"], geometry="geometry", crs=CRS_WGS84)
+    else:
+        rezultati["osm_zgrade_spojene_sa_parcelama_baze"] = gpd.GeoDataFrame(columns=["geometry"], geometry="geometry", crs=CRS_WGS84)
+
     return rezultati
 
+# ============================================================
+# GRAFIKONI (STATIČNI, ZA IZVEŠTAJ)
+# ============================================================
+
+def napravi_grafikone(rezultati, bespravni_sa_opstinom):
+    """
+    Pravi dva bar grafikona i cuva ih kao PNG u outputs/figures.
+    """
+    figures_dir = BASE_DIR / "outputs" / "figures"
+    figures_dir.mkdir(parents=True, exist_ok=True)
+
+    # 1) Zgrade po nameni zemljišta
+    zgrade_namena = rezultati.get("zgrade_spojene_sa_namenom_zemljista")
+
+    # Napomena: i OSM zgrade i OSM landuse sloj imaju kolonu "landuse",
+    # pa sjoin automatski preimenuje u "landuse_left"/"landuse_right".
+    # Nas zanima "landuse_right" (dolazi iz landuse sloja, ne iz zgrada).
+    kolona_namene = None
+    if zgrade_namena is not None and not zgrade_namena.empty:
+        if "landuse_right" in zgrade_namena.columns:
+            kolona_namene = "landuse_right"
+        elif "landuse" in zgrade_namena.columns:
+            kolona_namene = "landuse"
+
+    if kolona_namene is not None:
+        brojac = zgrade_namena[kolona_namene].fillna("nepoznato").value_counts()
+
+        plt.figure(figsize=(9, 5))
+        brojac.plot(kind="bar", color="steelblue")
+        plt.title("Broj OSM zgrada po nameni zemljišta")
+        plt.xlabel("Namena zemljišta")
+        plt.ylabel("Broj zgrada")
+        plt.xticks(rotation=45, ha="right")
+        plt.tight_layout()
+        putanja = figures_dir / "zgrade_po_nameni_zemljista.png"
+        plt.savefig(putanja, dpi=150)
+        plt.close()
+        print(f"Grafikon sačuvan: {putanja}")
+
+    # 2) Bespravni objekti po katastarskoj opštini
+    if bespravni_sa_opstinom is not None and not bespravni_sa_opstinom.empty and "katastarska_opstina" in bespravni_sa_opstinom.columns:
+        brojac2 = bespravni_sa_opstinom["katastarska_opstina"].fillna("nepoznato").value_counts()
+
+        plt.figure(figsize=(9, 5))
+        brojac2.plot(kind="bar", color="indianred")
+        plt.title("Broj bespravnih objekata po katastarskoj opštini")
+        plt.xlabel("Katastarska opština")
+        plt.ylabel("Broj bespravnih objekata")
+        plt.xticks(rotation=45, ha="right")
+        plt.tight_layout()
+        putanja2 = figures_dir / "bespravni_po_opstini.png"
+        plt.savefig(putanja2, dpi=150)
+        plt.close()
+        print(f"Grafikon sačuvan: {putanja2}")
 
 # ============================================================
 # MAPA
@@ -342,7 +429,7 @@ def dodaj_geojson_sloj(mapa, gdf, naziv, boja, fill=True, show=True):
     ).add_to(mapa)
 
 
-def napravi_mapu(parcele, legalni, bespravni, buildings, roads, water, landuse, rezultati):
+def napravi_mapu(parcele, legalni, bespravni, buildings, roads, water, landuse, rezultati, ml_detekcije):
     """
     Pravi interaktivnu HTML mapu sa slojevima.
     """
@@ -363,6 +450,17 @@ def napravi_mapu(parcele, legalni, bespravni, buildings, roads, water, landuse, 
     dodaj_geojson_sloj(mapa, legalni, "Legalni objekti iz baze", "green", fill=True, show=True)
     dodaj_geojson_sloj(mapa, bespravni, "Bespravni objekti iz baze", "red", fill=True, show=True)
 
+    # ML detekcije (Deo 3) - razdvojene po statusu klasifikacije
+    if not ml_detekcije.empty and "status_slucaja" in ml_detekcije.columns:
+        ml_bespravni = ml_detekcije[ml_detekcije["status_slucaja"] == "Kandidat - bespravni objekat"]
+        ml_legalno = ml_detekcije[ml_detekcije["status_slucaja"] == "Podudara se sa legalnim objektom"]
+    else:
+        ml_bespravni = gpd.GeoDataFrame(columns=["geometry"], geometry="geometry", crs=CRS_WGS84)
+        ml_legalno = gpd.GeoDataFrame(columns=["geometry"], geometry="geometry", crs=CRS_WGS84)
+
+    dodaj_geojson_sloj(mapa, ml_bespravni, "ML: kandidati za bespravne objekte", "crimson", fill=True, show=True)
+    dodaj_geojson_sloj(mapa, ml_legalno, "ML: podudara se sa legalnim", "limegreen", fill=True, show=False)
+    
     # OSM slojevi
     dodaj_geojson_sloj(mapa, buildings, "OSM zgrade", "gray", fill=True, show=False)
     dodaj_geojson_sloj(mapa, roads, "OSM putevi", "black", fill=False, show=False)
@@ -396,6 +494,23 @@ def napravi_mapu(parcele, legalni, bespravni, buildings, roads, water, landuse, 
         fill=True,
         show=False
     )
+    dodaj_geojson_sloj(
+        mapa,
+        rezultati.get("clip_zgrade_oko_parcela"),
+        "Clip - zgrade oko parcela",
+        "darkgreen",
+        fill=True,
+        show=False
+    )
+
+    dodaj_geojson_sloj(
+        mapa,
+        rezultati.get("osm_zgrade_spojene_sa_parcelama_baze"),
+        "OSM zgrade spojene sa parcelama iz baze",
+        "gold",
+        fill=True,
+        show=True
+    )
 
     folium.LayerControl(collapsed=False).add_to(mapa)
 
@@ -420,6 +535,7 @@ def main():
     parcele = ucitaj_postgis_tabelu(engine, "parcele", "parcela_id")
     legalni = ucitaj_postgis_tabelu(engine, "legalni_objekti", "objekat_id")
     bespravni = ucitaj_postgis_tabelu(engine, "bespravni_objekti", "bespravni_id")
+    ml_detekcije = ucitaj_postgis_tabelu(engine, "detektovani_objekti_ml", "detekcija_id")
 
     # 2. Ucitavanje OSM slojeva za Novi Sad
     buildings = ucitaj_osm_sloj(
@@ -456,6 +572,7 @@ def main():
     sacuvaj_geojson(parcele, "parcele_iz_baze.geojson")
     sacuvaj_geojson(legalni, "legalni_objekti_iz_baze.geojson")
     sacuvaj_geojson(bespravni, "bespravni_objekti_iz_baze.geojson")
+    sacuvaj_geojson(ml_detekcije, "detektovani_objekti_ml_iz_baze.geojson")
     sacuvaj_geojson(buildings, "osm_zgrade_novi_sad.geojson")
     sacuvaj_geojson(roads, "osm_putevi_novi_sad.geojson")
     sacuvaj_geojson(water, "osm_voda_novi_sad.geojson")
@@ -470,6 +587,9 @@ def main():
         parcele=parcele,
         bespravni=bespravni
     )
+
+    napravi_grafikone(rezultati, rezultati.get("within_bespravni_unutar_parcela"))
+    
 
     for naziv, gdf in rezultati.items():
         sacuvaj_geojson(gdf, f"{naziv}.geojson")
@@ -487,7 +607,8 @@ def main():
         roads=roads,
         water=water,
         landuse=landuse,
-        rezultati=rezultati
+        rezultati=rezultati,
+        ml_detekcije=ml_detekcije
     )
 
     print("=" * 70)
