@@ -1,11 +1,7 @@
 data/processed/
-data/raw/raster/
 models/
-outputs/detections/
+outputs/
 cache/
-
-
-
 
 *.pt
 *.shp
